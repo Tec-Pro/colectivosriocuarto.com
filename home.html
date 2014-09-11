@@ -1,0 +1,45 @@
+<!Doctype HTML>
+<html lang="es">
+	<head>
+		<title>Colectivos R&iacute;o Cuarto</title>
+		<meta charset="YTF-8">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<meta name="description" content="Colectivos de Río Cuarto Se trata de una aplicación sencilla y fácil de usar la cual contiene todos los horarios y recorridos de todas las lineas urbanas e interurbanas de la Ciudad de Río Cuarto, Córdoba, Argentina.">
+		<meta name="keywords" contenct="HTML5, CSS3, Javascript, PHP">
+		<link rel="stylesheet" href="css/home.css">	
+		<script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCWcDSkf5DDRXiMp-jD-BcFdFEDRHycSeY&sensor=false&language=es">
+    </script>
+    <script type="text/javascript" src="js/home.js"> </script>
+	</head>
+	<body onload="initialize()">
+		<div id="agrupar">
+		<nav id="menu">
+			<ul>
+				<li><figure><img src="imagenes/logo.png"></figure></li>
+				<li>Inicio</li>
+				<li><a href="horario.html">Horarios</li>
+				<li><a href="recorrido.html">Recorridos</a></li>
+				<li><a href="acercaDe.html">Acerca de</li>
+				<li><a href="contacto.html">Contacto</a></li>
+			</ul>
+		</nav>
+		<section id="columna">
+			<form >
+        		<p>Direcci&oacute;n de origen</p>
+        		<input type="text" id="origen" /> <br><br>
+        		<p>Direcci&oacute;n de destino</p>
+        		<input type="text" id="destino"/><br><br>	
+        		<input type="button" value="buscar" onclick="codeAddress()"> 
+        	</form>
+    		<figure>
+				<a href="https://www.facebook.com/TecProSoftware"><img src="imagenes/facebook.png"></a>
+			</figure>
+			<figure>
+				<a href="https://play.google.com/store/apps/details?id=org.tecpro.colectivos&hl=es_419"><img src="imagenes/googlePlay.png"></a>
+			</figure>
+		</section>	
+		</div>	
+		<div id="map_canvas" name="map_canvas"></div>
+	</body>
+</html>

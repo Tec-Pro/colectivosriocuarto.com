@@ -1,0 +1,88 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0 }
+
+header, section, footer, aside, nav, article, figure, hgroup{
+	display: block;
+}
+
+body{
+	text-align: center;
+}
+
+a:link {text-decoration:none;color:#000000;} 
+
+
+a:visited {text-decoration:none;color:#000000;} 
+
+
+a:active {text-decoration:none;} 
+
+
+a:hover {text-decoration:underline;} 
+
+
+#agrupar{
+	width: 95%; /*Ancho del contenedor*/
+	margin: 5px auto; /*auto = margen superior e inferior*/
+	text-align: left;
+}
+
+#menu{
+	background: #CCCCCC;
+	padding: 5px 25px;
+	background: -webkit-linear-gradient(30deg,#EEFFEF,#058907); /*Parametros: Lugar de inicio, color inicial, color final*/
+	background: -moz-linear-gradient(30deg,#EEFFEF,#058907);
+
+}
+
+#menu li:first-child{
+	width: 12%;
+	text-align: center;
+}
+
+#menu li:nth-child(4){
+	text-decoration:underline;
+	color:#058907;
+}
+
+#menu li{	
+	display: inline-block;
+	list-style: none;
+	padding:  0px 30px;
+	font: bold 14px verdana, sans-serif;	
+	text-shadow: rgb(150,150,150) 3px 3px 5px;
+}
+#menu li:nth-child(3){
+	display: inline-block;
+	list-style: none;
+	padding:  0px 30px;
+	font: bold 14px verdana, sans-serif;	
+	text-shadow: rgb(150,150,150) 3px 3px 5px;
+}
+
+#columna{
+	width: 15%;
+	margin: 20px 0px;
+	float: left;
+	padding: 20px;
+	background: #CCCCCC;
+	border-radius: 20px;	
+	box-shadow: rgb(150,150,150) 5px 5px 10px;
+	background: -webkit-linear-gradient(top,#EEFFEF,#058907);
+	background: -moz-linear-gradient(top,#EEFFEF,#058907);
+
+}
+
+#map_canvas { 
+	height: 80%;
+	float: left;
+	width: 70%;
+	margin: 20px 10px;
+	display: inline-block;
+}
+

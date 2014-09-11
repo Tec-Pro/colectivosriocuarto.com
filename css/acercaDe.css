@@ -1,0 +1,65 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+header, section, footer, aside, nav, article, figure, hgroup{
+	display: block;
+}
+
+body{
+	text-align: center;
+}
+
+a:link {text-decoration:none;color:#000000;} 
+
+
+a:visited {text-decoration:none;color:#000000;} 
+
+
+a:active {text-decoration:none;color:#058907;} 
+
+
+a:hover {text-decoration:underline;} 
+
+
+#agrupar{
+	width: 95%; /*Ancho del contenedor*/
+	margin: 5px auto; /*auto = margen superior e inferior*/
+	text-align: left;
+}
+
+#menu{
+	background: #CCCCCC;
+	padding: 5px 25px;
+	background: -webkit-linear-gradient(30deg,#EEFFEF,#058907); /*Parametros: Lugar de inicio, color inicial, color final*/
+	background: -moz-linear-gradient(30deg,#EEFFEF,#058907);
+
+}
+
+#menu li:first-child{
+
+	width: 12%;
+	text-align: center;
+}
+
+#menu li:nth-child(5){
+	text-decoration:underline;
+	color:#058907;
+}
+
+#menu li{	
+	display: inline-block;
+	list-style: none;
+	padding:  0px 30px;
+	font: bold 14px verdana, sans-serif;	
+	text-shadow: rgb(150,150,150) 3px 3px 5px;
+}
+
+#texto{
+	width: 80%;
+	margin: 100px;
+	float: left;
+	text-align: center;
+	text-shadow: rgb(150,150,150) 3px 3px 5px;
+}
