@@ -15,7 +15,7 @@
 				<li><a href="home.html">inicio</a></li>
 				<li><a href="horario.html">Horarios</a></li>
 				<li><a href="recorrido.html">Recorridos</a></li>
-				<li><a href="acercaDe.html">Acerca de</li>
+				<li><a href="acercaDe.html">Acerca de</a></li>
 				<li>Contacto</li>
 			</ul>
 		</nav>
