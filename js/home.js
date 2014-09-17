@@ -93,6 +93,8 @@ google.maps.event.addListener(map, 'click', function(e) {
   });
 }
 
+
+
 // funcion que pone marcador donde se hace click
 function placeMarker(position, map) {
  if (contador<2){
@@ -103,6 +105,11 @@ function placeMarker(position, map) {
     icon : marcadorDesde,
     draggable: true});   
   marcadores.push(markerDesde);
+  google.maps.event.addListener(markerDesde,'dragend',function(event) {
+        if (contador == 2){
+			buscarAux();
+		}
+    });
   } else {
     var markerHasta = new google.maps.Marker({
       position: position,
@@ -110,6 +117,11 @@ function placeMarker(position, map) {
       icon : marcadorHasta,
       draggable: true }); 
   marcadores.push(markerHasta);
+    google.maps.event.addListener(markerHasta,'dragend',function(event) {
+        if (contador == 2){
+			buscarAux();
+		}
+    });
   }
   if (contador == 0){
     // Add circle overlay and bind to marker
@@ -136,6 +148,7 @@ function placeMarker(position, map) {
       fillOpacity: 0.5 });
     circle.bindTo('center', markerHasta, 'position');
     circulos.push(circle);
+    buscarAux();
   }
   map.panTo(position);
   contador++;
@@ -165,6 +178,11 @@ for ( var i = 0; i < ( circulos.length) ; i++) { //elimino todos los circulos
           icon : marcadorDesde,
           draggable: true
       });
+         google.maps.event.addListener(marcadorDesde,'dragend',function(event) {
+        if (contador == 2){
+			buscarAux();
+		}
+    });
       contador++;
       marcadores.push(markerDesde);
       var circle = new google.maps.Circle({
@@ -202,6 +220,11 @@ for ( var i = 0; i < ( circulos.length) ; i++) { //elimino todos los circulos
         fillOpacity: 0.5 });
         circle.bindTo('center', markerHasta, 'position');
       marcadores.push(markerHasta);
+      google.maps.event.addListener(markerHasta,'dragend',function(event) {
+        if (contador == 2){
+			buscarAux();
+		}
+    });
       circulos.push(circle); 
       buscarAux();
     } else {

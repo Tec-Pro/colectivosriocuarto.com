@@ -80,4 +80,23 @@ a:hover {text-decoration:underline;}
 	display: inline-block;
 }
 
- 
+
+#origen,#destino { 
+
+  border-radius: 5px;
+  box-shadow: none;
+  border-style: none;
+  height:auto; 
+  width: auto;
+  text-align: center;
+ } 
+
+#botonBuscar {
+  border-radius: 5px;
+  box-shadow: none;
+  border-style: outset;
+  height:auto; 
+  width: 100%;
+  text-align: center;
+  text-transform: capitalize;
+}
