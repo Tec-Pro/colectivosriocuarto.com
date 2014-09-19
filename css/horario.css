@@ -3,6 +3,9 @@
 	padding: 0%;
 }
 
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0 }
+
 header, section, footer, aside, nav, article, figure, hgroup{
 	display: block;
 }
@@ -33,8 +36,8 @@ a:hover {text-decoration:underline;}
 #menu{
 	background: #CCCCCC;
 	padding: 0.5% 0.5%;
-	background: -webkit-linear-gradient(30deg,#EEFFEF,#058907); /*Parametros: Lugar de inicio, color inicial, color final*/
-	background: -moz-linear-gradient(30deg,#EEFFEF,#058907);
+	background: -webkit-linear-gradient(30deg,#8FCA90,#058907); /*Parametros: Lugar de inicio, color inicial, color final*/
+	background: -moz-linear-gradient(30deg,#8fca90,#058907);
 
 }
 
@@ -52,14 +55,14 @@ a:hover {text-decoration:underline;}
 	display: inline-block;
 	list-style: none;
 	padding:  0% 3%;
-	font: bold 14px verdana, sans-serif;	
+	font: bold 90% verdana, sans-serif;	
 	text-shadow: rgb(150,150,150) 0.3% 0.3% 0.5%;
 }
 #menu li:nth-child(3){
 	display: inline-block;
 	list-style: none;
 	padding:  0% 3%;
-	font: bold 14px verdana, sans-serif;	
+	font: bold 90% verdana, sans-serif;	
 	text-shadow: rgb(150,150,150) 0.3% 0.3% 0.5%;
 }
 
@@ -71,10 +74,12 @@ a:hover {text-decoration:underline;}
 	background: #CCCCCC;
 	border-radius: 2%;	
 	box-shadow: rgb(150,150,150) 0.5% 0.5% 1%;
-	background: -webkit-linear-gradient(top,#EEFFEF,#058907);
-	background: -moz-linear-gradient(top,#EEFFEF,#058907);
+	background: -webkit-linear-gradient(top,#8FCA90,#058907);
+	background: -moz-linear-gradient(top,#8FCA90,#058907);
 
 }
+
+img { max-width: 100%};
 
 #tabla{
 	width: 70%;

@@ -17,6 +17,7 @@
 				<li><a href="recorrido.html">Recorridos</a></li>
 				<li><a href="acercaDe.html">Acerca de</a></li>
 				<li>Contacto</li>
+				<li><img src="http://localhost/colectivosriocuarto.com/imagenes/publicidad1.jpg" id="publi"></li>
 			</ul>
 		</nav>
 		<section id="texto">
@@ -26,11 +27,12 @@ function recogerDato($campo){
 }
 	$email = recogerDato('email');
 	$message = recogerDato('message');
-	$nombre = recogerDato('nombre');
+	$nombre = recogerDato('name');
 	$asunto = recogerDato('asunto');
+	$telefono = recogerDato('telephone');
 	$para="softwaretecpro@gmail.com";
-	$mensaje="Datos del formulario de contacto\n". "nombre: ".$nombre." \n"."email: ".$email." \n"."Mensaje ".$message;
-	mail($para,$asunto,$mensaje);
+	$mensaje="Datos del formulario de contacto\n". "nombre: ".$nombre." \n"."email: ".$email." \n"."telefono: ".$telefono." \n"."Mensaje ".$message;
+	mail($para,$asunto,$mensaje) or die("Error!");;
 	echo "<p>¡Gracias por contactar con nosotros!</p>";
 	echo "<p>Su solicitud ha sido enviada, en breve nos pondremos en contacto con usted.</p>";
 ?>

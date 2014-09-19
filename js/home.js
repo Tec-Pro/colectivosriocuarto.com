@@ -55,28 +55,28 @@ var markerHasta;
 
         var recorrido18=[-64.36026295345481,-33.11238633769455, -64.35893573691865,-33.11352316461513, -64.35864528510084,-33.11253878032269, -64.36014718389626,-33.11220306451099, -64.35881840773213,-33.10838378709067, -64.35456597210553,-33.10938004197679, -64.35429463162637,-33.11086230043494, -64.3519980129753,-33.11324258440897, -64.35387879358508,-33.11409990441662, -64.35337180608239,-33.11531391895763, -64.35236791486678,-33.11693110733692, -64.35191146485668,-33.11753569320688, -64.35037444961117,-33.11900132004107, -64.35016739933036,-33.11920810624246, -64.35018392908816,-33.11920121801897, -64.34827265319088,-33.11968596213351, -64.3493676401115,-33.12314346110867, -64.3483644988701,-33.12334123102257, -64.34702431323103,-33.11903862954338, -64.34900163146654,-33.11856201128616, -64.34872803475602,-33.11766316523892, -64.34965585074062,-33.11744033336181, -64.35156102871227,-33.11659353966326, -64.3524195652134,-33.11529006163986, -64.35258751425467,-33.11357832553956, -64.35189782901797,-33.11323519278731, -64.3542015723459,-33.11084495263029, -64.35454126411366,-33.1093365813516, -64.35889144764188,-33.10834249782835, -64.36026295345481,-33.11238633769455];
 
-var recorridosYNombres =  ["LINEA 1 VERDE",recorrido1Verde,
-        "LINEA 1 ROJO",recorrido1Rojo,
-        "LINEA 2 VERDE",recorrido2Verde,
-        "LINEA 2 ROJO",recorrido2Rojo,
-        "LINEA 3",recorrido3,
-        "LINEA 4",recorrido4,
-        "LINEA 5",recorrido5,
-        "LINEA 6",recorrido6,
-        "LINEA 7",recorrido7,
-        "LINEA 8 VERDE",recorrido8Verde,
-        "LINEA 8 ROJO",recorrido8Rojo,
-        "LINEA 9 VERDE",recorrido9Verde,
-        "LINEA 9 ROJO",recorrido9Rojo,
-        "LINEA 10",recorrido10,
-        "LINEA 11",recorrido11,
-        "LINEA 12",recorrido12,
-        "LINEA 13",recorrido13,
-        "LINEA 14",recorrido14,
-        "LINEA 15",recorrido15,
-        "LINEA 16",recorrido16,
-        "LINEA 17",recorrido17,
-        "LINEA 18",recorrido18];
+var recorridosYNombres =  ["L&iacute;nea 1 verde",recorrido1Verde,
+        "L&iacute;nea 1 rojo",recorrido1Rojo,
+        "L&iacute;nea 2 verde",recorrido2Verde,
+        "L&iacute;nea 2 rojo",recorrido2Rojo,
+        "L&iacute;nea 3",recorrido3,
+        "L&iacute;nea 4",recorrido4,
+        "L&iacute;nea 5",recorrido5,
+        "L&iacute;nea 6",recorrido6,
+        "L&iacute;nea 7",recorrido7,
+        "L&iacute;nea 8 verde",recorrido8Verde,
+        "L&iacute;nea 8 rojo",recorrido8Rojo,
+        "L&iacute;nea 9 verde",recorrido9Verde,
+        "L&iacute;nea 9 rojo",recorrido9Rojo,
+        "L&iacute;nea 10",recorrido10,
+        "L&iacute;nea 11",recorrido11,
+        "L&iacute;nea 12",recorrido12,
+        "L&iacute;nea 13",recorrido13,
+        "L&iacute;nea 14",recorrido14,
+        "L&iacute;nea 15",recorrido15,
+        "L&iacute;nea 16",recorrido16,
+        "L&iacute;nea 17",recorrido17,
+        "L&iacute;nea 18",recorrido18];
 
 var mapOptions = {
           center: new google.maps.LatLng(-33.1265506, -64.3414028),
@@ -89,13 +89,31 @@ function initialize() { //Inicializa el mapa en Rio Cuarto
        map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
 
+	document.getElementById("resultado").style.display="none";
+
+  
+  var input = (document.getElementById('pac-input'));
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+
+  /*$(function(){
+    var arrImagenes = ['http://localhost/colectivosriocuarto.com/imagenes/publicidad1.jpg'];
+    var imagenActual = arrImagenes[0];
+    var tiempo = 5000;
+    setInterval( function(){
+        do{
+            var randImage = arrImagenes[Math.ceil(Math.random()*(arrImagenes.length))];
+        }while( randImage == imagenActual )
+        imagenActual = randImage;
+        cambiarImagenFondo(imagenActual);
+    }, tiempo)*/
+
+
 //click listener para poner marcador en mapa     
 google.maps.event.addListener(map, 'click', function(e) { 
     placeMarker(e.latLng, map);
   });
 }
 
-document.getElementById("resultado").style.display = 'none';
 
 
 // funcion que pone marcador donde se hace click
@@ -256,9 +274,9 @@ function codeAddress() {
                 var dist = perteneceAlRadio(lin ,markerDesde.getPosition(),1000,markerHasta.getPosition());
                 if(dist!=-1){
                     retornoMinimo(recorridosYNombres[j-1],dist,lin);
-                    lineasQueLlegan.push(recorridosYNombres[j-1]);
-					lineasQueLlegan.push(recorridosYNombres[j]);                  
-                    lineasQueLlegan.push( dist / 1000);
+                    lineasQueLlegan.push(recorridosYNombres[j-1]);                 
+                    lineasQueLlegan.push( (dist / 1000).toFixed(2));
+					lineasQueLlegan.push(recorridosYNombres[j]); 
                 }
                 j = j+2;
             }
@@ -266,9 +284,10 @@ function codeAddress() {
                     mejorRecorrido = null;
             }
             if (dibujar != null){
-              dibujar.setMap(null);
+              dibujar.setMap(null);			    
             }
             if(mejorRecorrido!=null) {
+              document.getElementById('pac-input').innerHTML = mejor[0]	;
               var recoCorrecto = coord(mejorRecorrido);
                 // Creo el circulo
               var lineSymbol = {
@@ -294,18 +313,35 @@ function codeAddress() {
               animateCircle(dibujar);
             }
             if (lineasQueLlegan.length > 0){
+            $("#listaResultados").empty();
               var i = 2;
               var listadoResultado = document.getElementById("listaResultados");
               while (i < lineasQueLlegan.length ){
               	var li = document.createElement('li');
-              	li.innerHTML = lineasQueLlegan[i-2] + " distancia: " + lineasQueLlegan[i-1] + " Km";
+              	li.innerHTML = lineasQueLlegan[i-2] + ", " + lineasQueLlegan[i-1] + " Km";
               	listadoResultado.appendChild(li);
               	i = i+3;
               }
-              	$( "listaResultados" ).click(function() {
-					var index = $( "listaResultados" ).index( this );
-					if (index == 0){ 
-						var recoCorrecto = coord(lineasQueLlegan[2]);
+              	$( "#listaResultados li" ).click(function() {
+					var position = 0;
+				    var currentNode = this;
+				    var firstNode = currentNode.parentNode.firstChild;					
+				    while(firstNode != currentNode) {
+				        position++;
+				        currentNode = currentNode.previousSibling;
+				    }
+				    var t = 0;
+				    var listax = document.getElementById("listaResultados").getElementsByTagName("li");
+				    while (t < listax.length) {
+				    	listax[t].style.textDecoration="none";
+				    	t++;
+				    }				    
+				    $('#listaResultados li').get(position).style.textDecoration="underline";
+				    document.getElementById('pac-input').innerHTML = lineasQueLlegan[position * 3];
+					var recoCorrecto = coord(lineasQueLlegan[position * 3 + 2]); //index * 3 +2
+					 if (dibujar != null){
+              			dibujar.setMap(null);			    
+            		}
 				                // Creo el circulo
 				              var lineSymbol = {
 				                path: google.maps.SymbolPath.CIRCLE,
@@ -328,39 +364,12 @@ function codeAddress() {
 				              });
 				              dibujar.setMap(map);
 				              animateCircle(dibujar);
-					} else {
-						var recoCorrecto = coord(lineasQueLlegan[index*3 + 2]);
-				                // Creo el circulo
-				              var lineSymbol = {
-				                path: google.maps.SymbolPath.CIRCLE,
-				                scale: 6,
-				                strokeColor: '#393',
-				                fillColor: '#393',
-				                fillOpacity: 1
-				              };
-				              //creo la linea
-				              dibujar = new google.maps.Polyline({
-				                path: recoCorrecto,
-				                geodesic: true,
-				                strokeColor: '#058907',
-				                strokeOpacity: 1.0,
-				                strokeWeight: 2,
-				                icons: [{
-				                  icon: lineSymbol,
-				                  offset: '100%'
-				                }]
-				              });
-				              dibujar.setMap(map);
-				              animateCircle(dibujar);
-					}
-				});
+					});
               document.getElementById("resultado").style.display = 'block';
             } else {
-            	document.getElementById("resultado").style.display = 'none';
-				while(listadoResultado.firstChild) {
-					listadoResultado.removeChild(listadoResultado.firstChild);
-           		}
-           		//listadoResultado.innerHTML = ""; ALTERNATIVA SI NO FUNCIONA LO DE ARRIBA
+            	document.getElementById("resultado").style.display="none";;
+				var lis = document.getElementById("listaResultados");
+				 $("#listaResultados").empty();
            }
     } 
 }   
@@ -504,6 +513,13 @@ function puntoMedio(  pLongitud,  pLatitud,  p2Longitud,  p2Latitud){
         return new google.maps.LatLng(medioLat,medioLong);
     }
 
+
+
+ 
+/*function cambiarImagenFondo(nuevaImagen){
+    //cargar imagen primero
+    document.getElementById("publi").src=nuevaImagen;
+}*/
 
 
 google.maps.event.addDomListener(window, 'load', initialize);
