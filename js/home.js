@@ -95,6 +95,7 @@ google.maps.event.addListener(map, 'click', function(e) {
   });
 }
 
+document.getElementById("resultado").style.display = 'none';
 
 
 // funcion que pone marcador donde se hace click
@@ -256,6 +257,7 @@ function codeAddress() {
                 if(dist!=-1){
                     retornoMinimo(recorridosYNombres[j-1],dist,lin);
                     lineasQueLlegan.push(recorridosYNombres[j-1]);
+					lineasQueLlegan.push(recorridosYNombres[j]);                  
                     lineasQueLlegan.push( dist / 1000);
                 }
                 j = j+2;
@@ -263,12 +265,11 @@ function codeAddress() {
             if(mejor[0] == "ninguno") {
                     mejorRecorrido = null;
             }
-            var i = 0;
             if (dibujar != null){
               dibujar.setMap(null);
             }
             if(mejorRecorrido!=null) {
-                var recoCorrecto = coord(mejorRecorrido);
+              var recoCorrecto = coord(mejorRecorrido);
                 // Creo el circulo
               var lineSymbol = {
                 path: google.maps.SymbolPath.CIRCLE,
@@ -292,9 +293,78 @@ function codeAddress() {
               dibujar.setMap(map);
               animateCircle(dibujar);
             }
+            if (lineasQueLlegan.length > 0){
+              var i = 2;
+              var listadoResultado = document.getElementById("listaResultados");
+              while (i < lineasQueLlegan.length ){
+              	var li = document.createElement('li');
+              	li.innerHTML = lineasQueLlegan[i-2] + " distancia: " + lineasQueLlegan[i-1] + " Km";
+              	listadoResultado.appendChild(li);
+              	i = i+3;
+              }
+              	$( "listaResultados" ).click(function() {
+					var index = $( "listaResultados" ).index( this );
+					if (index == 0){ 
+						var recoCorrecto = coord(lineasQueLlegan[2]);
+				                // Creo el circulo
+				              var lineSymbol = {
+				                path: google.maps.SymbolPath.CIRCLE,
+				                scale: 6,
+				                strokeColor: '#393',
+				                fillColor: '#393',
+				                fillOpacity: 1
+				              };
+				              //creo la linea
+				              dibujar = new google.maps.Polyline({
+				                path: recoCorrecto,
+				                geodesic: true,
+				                strokeColor: '#058907',
+				                strokeOpacity: 1.0,
+				                strokeWeight: 2,
+				                icons: [{
+				                  icon: lineSymbol,
+				                  offset: '100%'
+				                }]
+				              });
+				              dibujar.setMap(map);
+				              animateCircle(dibujar);
+					} else {
+						var recoCorrecto = coord(lineasQueLlegan[index*3 + 2]);
+				                // Creo el circulo
+				              var lineSymbol = {
+				                path: google.maps.SymbolPath.CIRCLE,
+				                scale: 6,
+				                strokeColor: '#393',
+				                fillColor: '#393',
+				                fillOpacity: 1
+				              };
+				              //creo la linea
+				              dibujar = new google.maps.Polyline({
+				                path: recoCorrecto,
+				                geodesic: true,
+				                strokeColor: '#058907',
+				                strokeOpacity: 1.0,
+				                strokeWeight: 2,
+				                icons: [{
+				                  icon: lineSymbol,
+				                  offset: '100%'
+				                }]
+				              });
+				              dibujar.setMap(map);
+				              animateCircle(dibujar);
+					}
+				});
+              document.getElementById("resultado").style.display = 'block';
+            } else {
+            	document.getElementById("resultado").style.display = 'none';
+				while(listadoResultado.firstChild) {
+					listadoResultado.removeChild(listadoResultado.firstChild);
+           		}
+           		//listadoResultado.innerHTML = ""; ALTERNATIVA SI NO FUNCIONA LO DE ARRIBA
+           }
     } 
 }   
- 
+
 
  function animateCircle(line) { //mueve el circulo por la linea
     var count = 0;
