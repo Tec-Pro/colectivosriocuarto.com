@@ -1,6 +1,6 @@
 *{
-	margin: 0px;
-	padding: 0px;
+	margin: 0%;
+	padding: 0%;
 }
 
 html { height: 100% }
@@ -28,13 +28,13 @@ a:hover {text-decoration:underline;}
 
 #agrupar{
 	width: 95%; /*Ancho del contenedor*/
-	margin: 5px auto; /*auto = margen superior e inferior*/
+	margin: 0.5% auto; /*auto = margen superior e inferior*/
 	text-align: left;
 }
 
 #menu{
 	background: #CCCCCC;
-	padding: 5px 25px;
+	padding: 0.5% 2.5%;
 	background: -webkit-linear-gradient(30deg,#EEFFEF,#058907); /*Parametros: Lugar de inicio, color inicial, color final*/
 	background: -moz-linear-gradient(30deg,#EEFFEF,#058907);
 
@@ -53,39 +53,41 @@ a:hover {text-decoration:underline;}
 #menu li{	
 	display: inline-block;
 	list-style: none;
-	padding:  0px 30px;
+	padding:  0% 3%;
 	font: bold 14px verdana, sans-serif;	
-	text-shadow: rgb(150,150,150) 3px 3px 5px;
+	text-shadow: rgb(150,150,150) 0.3% 0.3% 0.5%;
 }
 #menu li:nth-child(3){
 	display: inline-block;
 	list-style: none;
-	padding:  0px 30px;
+	padding:  0% 3%;
 	font: bold 14px verdana, sans-serif;	
-	text-shadow: rgb(150,150,150) 3px 3px 5px;
+	text-shadow: rgb(150,150,150) 0.3% 0.3% 0.5%;
 }
 
 #columna{
 	width: 15%;
-	margin: 20px 0px;
+	margin: 2% 0%;
 	float: left;
-	padding: 20px;
+	padding: 2%;
 	background: #CCCCCC;
-	border-radius: 20px;	
-	box-shadow: rgb(150,150,150) 5px 5px 10px;
+	border-radius: 5%;	
+	box-shadow: rgb(150,150,150) 0.5% 0.5% 1%;
 	background: -webkit-linear-gradient(top,#EEFFEF,#058907);
 	background: -moz-linear-gradient(top,#EEFFEF,#058907);
 
 }
 
-
+#links{
+	display: block;
+}
 
 
 #map_canvas { 
 	height: 80%;
 	float: left;
 	width: 70%;
-	margin: 20px 10px;
+	margin: 2% 1%;
 	display: inline-block;
 }
 
