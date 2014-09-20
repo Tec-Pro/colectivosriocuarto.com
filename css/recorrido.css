@@ -93,3 +93,6 @@ img { max-width: 100%};
 	display: inline-block;
 }
 
+#lineas{
+	max-width: 20%;
+}

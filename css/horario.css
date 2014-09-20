@@ -66,6 +66,10 @@ a:hover {text-decoration:underline;}
 	text-shadow: rgb(150,150,150) 0.3% 0.3% 0.5%;
 }
 
+#lineas{
+	max-width: 20%;
+}
+
 #columna{
 	width: 15%;
 	margin: 2% 0%;
@@ -93,4 +97,5 @@ iframe {
 	position: absolute; 
 	height: 80%
 }
+
 html, body, iframe { height: 80%; }
