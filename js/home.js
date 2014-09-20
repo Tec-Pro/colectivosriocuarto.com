@@ -11,6 +11,7 @@ var mejor = ["ninguno",99999999.0];
 var mejorRecorrido = [];
 var markerDesde;
 var markerHasta;
+var cuadrasACaminar;
   var recorrido1Rojo= [-64.389053,-33.113548, -64.389099,-33.113609, -64.388969,-33.113659, -64.386383,-33.11417, -64.38597900000001,-33.114319, -64.38191999999999,-33.115261, -64.38176,-33.115421, -64.381241,-33.115608, -64.38078299999999,-33.11552, -64.379417,-33.115829, -64.34520000000001,-33.12402, -64.345848,-33.125919, -64.345032,-33.126171, -64.33981300000001,-33.130421, -64.342133,-33.13245, -64.343468,-33.133759, -64.342934,-33.134251, -64.34168200000001,-33.135181, -64.336967,-33.13628, -64.337677,-33.138409, -64.333054,-33.139439, -64.33236700000001,-33.13726, -64.327591,-33.138359, -64.32762099999999,-33.140659, -64.32392900000001,-33.141479, -64.32240299999999,-33.136829, -64.31326300000001,-33.138939, -64.31242399999999,-33.136372, -64.32308999999999,-33.133919, -64.322678,-33.132648, -64.331619,-33.130611, -64.33564800000001,-33.12962, -64.337593,-33.128319, -64.33978999999999,-33.130379, -64.34320099999999,-33.127468, -64.34269000000001,-33.125809, -64.348991,-33.12426, -64.35862,-33.122021, -64.36406700000001,-33.120701, -64.36412799999999,-33.120399, -64.364288,-33.12027, -64.36443300000001,-33.12022, -64.36473100000001,-33.120289, -64.364952,-33.12051, -64.367729,-33.119911, -64.369247,-33.119659, -64.370903,-33.119221, -64.372299,-33.118912, -64.37142900000001,-33.116409, -64.38050800000001,-33.114208, -64.380966,-33.11544, -64.38127900000001,-33.115211, -64.381477,-33.1152, -64.381844,-33.115238, -64.385834,-33.114311, -64.386414,-33.114079, -64.389038,-33.113548];
 
         var recorrido1Verde=[-64.366516,-33.096962, -64.36798899999999,-33.101337, -64.369469,-33.105721, -64.37146,-33.110577, -64.37206999999999,-33.111275, -64.372665,-33.111946, -64.373024,-33.11256, -64.373352,-33.113171, -64.37400100000001,-33.11438, -64.374641,-33.115585, -64.375229,-33.116795, -64.37003300000001,-33.118118, -64.36340300000001,-33.119705, -64.357086,-33.121201, -64.348953,-33.123138, -64.34625200000001,-33.123768, -64.345169,-33.124039, -64.34586299999999,-33.125969, -64.345001,-33.126141, -64.339821,-33.130417, -64.33725699999999,-33.127975, -64.33445,-33.128658, -64.33530399999999,-33.131145, -64.312477,-33.136375, -64.313225,-33.138916, -64.322395,-33.136841, -64.323883,-33.141495, -64.326988,-33.140778, -64.32589,-33.137379, -64.333496,-33.135693, -64.334976,-33.140381, -64.33963,-33.139366, -64.33809700000001,-33.134666, -64.341049,-33.133942, -64.34153000000001,-33.135216, -64.343491,-33.133785, -64.33974499999999,-33.13031, -64.34201,-33.128433, -64.343231,-33.127407, -64.342636,-33.125797, -64.34968600000001,-33.124146, -64.356331,-33.122574, -64.35849,-33.122036, -64.36393,-33.12077, -64.364052,-33.12067, -64.364159,-33.120407, -64.364319,-33.12027, -64.364609,-33.120243, -64.36486100000001,-33.120335, -64.365005,-33.120522, -64.366287,-33.120205, -64.36763000000001,-33.119946, -64.369202,-33.119667, -64.37075,-33.119324, -64.372322,-33.118965, -64.371887,-33.117687, -64.37145200000001,-33.116402, -64.37439000000001,-33.115654, -64.37426000000001,-33.115021, -64.373451,-33.11348, -64.37305499999999,-33.11272, -64.372612,-33.11198, -64.371994,-33.111294, -64.371399,-33.110607, -64.36939200000001,-33.105755, -64.368759,-33.103764, -64.368591,-33.103264, -64.368431,-33.102764, -64.368088,-33.101761, -64.36644699999999,-33.096966];
@@ -145,10 +146,11 @@ function placeMarker(position, map) {
     });
   }
   if (contador == 0){
+  	cuadrasACaminar = parseInt(document.getElementById("distancia").value) * 100;
     // Add circle overlay and bind to marker
     var circle = new google.maps.Circle({
       map: map,
-      radius: 1000,
+      radius: cuadrasACaminar,
       strokeColor: '#AA0000',
      strokeWeight: 0,
      strokeOpacity: 0.5,
@@ -159,9 +161,10 @@ function placeMarker(position, map) {
   } 
   if (contador == 1){
   // Add circle overlay and bind to marker
+  cuadrasACaminar = parseInt(document.getElementById("distancia").value) * 100;
     var circle = new google.maps.Circle({
       map: map,
-      radius: 1000,    
+      radius: cuadrasACaminar,    
       strokeColor: '#22FF00',
       strokeWeight: 0,
       strokeOpacity: 0.5,
@@ -180,6 +183,7 @@ function placeMarker(position, map) {
   // coloca los marcadores en las direcciones buscadas
 function codeAddress() {
     if ( (document.getElementById("origen").value != '') && (document.getElementById("destino").value != '')) {
+    	cuadrasACaminar = parseInt(document.getElementById("distancia").value) * 100;
         for ( var i = 0; i < ( circulos.length) ; i++) { //elimino todos los circulos
             circulos[i].setMap(null);
         }; 
@@ -213,7 +217,7 @@ function codeAddress() {
                // marcadores.push(markerDesde);
                 var circle = new google.maps.Circle({
                     map: map,
-                    radius: 1000,    
+                    radius: cuadrasACaminar,    
                     strokeColor: '#AA0000',
                     strokeWeight: 0,
                     strokeOpacity: 0.5,
@@ -244,7 +248,7 @@ function codeAddress() {
                 contador++;
                 var circle = new google.maps.Circle({
                     map: map,
-                    radius: 1000,    
+                    radius: cuadrasACaminar,    
                     strokeColor: '#22FF00',
                     strokeWeight: 0,
                     strokeOpacity: 0.5,
@@ -266,12 +270,13 @@ function codeAddress() {
 
     function buscarAux() {
         if ((markerHasta != null) && (markerDesde != null)){
+        	cuadrasACaminar = parseInt(document.getElementById("distancia").value) * 100;
             mejor = ["ninguno",99999999.0];
             var lineasQueLlegan=  [];
             var j=1;
             while(j<recorridosYNombres.length){
                 var lin = recorridosYNombres[j];
-                var dist = perteneceAlRadio(lin ,markerDesde.getPosition(),1000,markerHasta.getPosition());
+                var dist = perteneceAlRadio(lin ,markerDesde.getPosition(),cuadrasACaminar,markerHasta.getPosition());
                 if(dist!=-1){
                     retornoMinimo(recorridosYNombres[j-1],dist,lin);
                     lineasQueLlegan.push(recorridosYNombres[j-1]);                 
@@ -514,6 +519,15 @@ function puntoMedio(  pLongitud,  pLatitud,  p2Longitud,  p2Latitud){
     }
 
 
+function cambiarRadio(){
+	var i = 0;
+	cuadrasACaminar = parseInt(document.getElementById("distancia").value) * 100;
+	while (i<circulos.length){
+		circulos[i].setRadius(cuadrasACaminar);
+		i++;		
+	}
+	buscarAux();
+}
 
  
 /*function cambiarImagenFondo(nuevaImagen){
