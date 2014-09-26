@@ -1,9 +1,10 @@
 *{
 	margin: 0%;
 	padding: 0%;
+
 }
-html { height: 100% }
-body { height: 100%; margin: 0; padding: 0 }
+html { height: 100%;max-width:100% }
+body { height: 100%; margin: 0; padding: 0 ;max-width:100%}
 
 header, section, footer, aside, nav, article, figure, hgroup{
 	display: block;
@@ -27,6 +28,7 @@ a:hover {text-decoration:underline;}
 
 #agrupar{
 	width: 95%; /*Ancho del contenedor*/
+	max-width: 95%; 
 	margin: 0.5% auto; /*auto = margen superior e inferior*/
 	text-align: left; 
 }  
@@ -59,6 +61,7 @@ a:hover {text-decoration:underline;}
 }
 
 #columna{
+	max-width: 15%;
 	width: 15%;
 	margin: 2% 0%;
 	float: left;
@@ -74,9 +77,10 @@ a:hover {text-decoration:underline;}
 
 #map_canvas { 
 	height: 80%;
-	max-height: 80%
+	max-height: 80%;
 	float: left;
 	width: 70%;
+	max-width:70%;
 	margin: 2% 1%;
 	display: inline-block;
 	max-width: 70%;
@@ -89,6 +93,7 @@ a:hover {text-decoration:underline;}
   border-style: none;
   height: auto; 
   width: 80%;
+  max-width: 80%;
   text-align: center;
  } 
 
@@ -98,6 +103,7 @@ a:hover {text-decoration:underline;}
   border-style: outset;
   height: auto; 
   width: 80%;
+  max-width:80%;
   text-align: center;
   text-transform: capitalize;
 }
@@ -124,7 +130,7 @@ a:hover {text-decoration:underline;}
 	font-size: 102%;
 }
 
-img { max-width: 100%;}
+img { max-width: 100%;height:auto;}
 
 #listaResultados li:visited {text-decoration:none;color:#000000;} 
 

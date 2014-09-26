@@ -1,4 +1,6 @@
 <!--
+<!--[if lt IE 9]>
+
 var map;
 var contador = 0;
 var geocoder;
@@ -537,4 +539,6 @@ function cambiarRadio(){
 
 
 google.maps.event.addDomListener(window, 'load', initialize);
+<![endif]-->
+
 --> 
