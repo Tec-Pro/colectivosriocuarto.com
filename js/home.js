@@ -1,11 +1,10 @@
 <!--
-<!--[if lt IE 9]>
 
 var map;
 var contador = 0;
 var geocoder;
-var marcadorHasta = 'http://localhost/colectivosriocuarto.com/imagenes/hasta.png';
-var marcadorDesde = 'http://localhost/colectivosriocuarto.com/imagenes/desdee.png';
+var marcadorHasta = 'http://www.colectivosriocuarto.com/imagenes/hasta.png';
+var marcadorDesde = 'http://www.colectivosriocuarto.com/imagenes/desdee.png';
 var marcadores = []; // Se tiene que crear un array en el que se guarde el número de marcadores que hay en el mapa
 var circulos = [];
 var dibujar;
@@ -539,6 +538,5 @@ function cambiarRadio(){
 
 
 google.maps.event.addDomListener(window, 'load', initialize);
-<![endif]-->
 
 --> 
