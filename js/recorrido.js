@@ -66,6 +66,9 @@ function initialize() {
           zoom: 12,
           mapTypeId: google.maps.MapTypeId.ROADMAP };
        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+       var input = (document.getElementById('pac-input'));
+ 	   map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
    }
 
    function cambiar(){
@@ -74,28 +77,28 @@ function initialize() {
           for ( var i = 0; i < ( dibujadas.length) ; i++) { //elimino todos los marcadores
             dibujadas[i].setMap(null);
           };         
-          if (opcion == '1v') {crearlineas(recorrido1Verde)}; 
-          if (opcion == '1r') {crearlineas(recorrido1Rojo)}; 
-          if (opcion == '2v') {crearlineas(recorrido2Verde)}; 
-          if (opcion == '2r') {crearlineas(recorrido2Rojo)}; 
-          if (opcion == '3') {crearlineas(recorrido3)};
-          if (opcion == '4') {crearlineas(recorrido4)};
-          if (opcion == '5') {crearlineas(recorrido5)};
-          if (opcion == '6') {crearlineas(recorrido6)};
-          if (opcion == '7') {crearlineas(recorrido7)};
-          if (opcion == '8v') {crearlineas(recorrido8Verde)}; 
-          if (opcion == '8r') {crearlineas(recorrido8Rojo)};
-          if (opcion == '9v') {crearlineas(recorrido9Verde)};
-          if (opcion == '9r') {crearlineas(recorrido9Rojo)};
-          if (opcion == '10') {crearlineas(recorrido10)};
-          if (opcion == '11') {crearlineas(recorrido11)};
-          if (opcion == '12') {crearlineas(recorrido12)};
-          if (opcion == '13') {crearlineas(recorrido13)};
-          if (opcion == '14') {crearlineas(recorrido14)};
-          if (opcion == '15') {crearlineas(recorrido15)};
-          if (opcion == '16') {crearlineas(recorrido16)};
-          if (opcion == '17') {crearlineas(recorrido17)};
-          if (opcion == '18') {crearlineas(recorrido18)};
+          if (opcion == '1v') {crearlineas(recorrido1Verde);document.getElementById('pac-input').innerHTML ="Linea 1 Verde";} 
+          if (opcion == '1r') {crearlineas(recorrido1Rojo);document.getElementById('pac-input').innerHTML = "Linea 1 Rojo";} 
+          if (opcion == '2v') {crearlineas(recorrido2Verde);document.getElementById('pac-input').innerHTML ="Linea 2 Verde" }; 
+          if (opcion == '2r') {crearlineas(recorrido2Rojo);document.getElementById('pac-input').innerHTML = "Linea 2 Rojo";} 
+          if (opcion == '3') {crearlineas(recorrido3);document.getElementById('pac-input').innerHTML = "Linea 3";}
+          if (opcion == '4') {crearlineas(recorrido4);document.getElementById('pac-input').innerHTML = "Linea 4";}
+          if (opcion == '5') {crearlineas(recorrido5);document.getElementById('pac-input').innerHTML = "Linea 5";}
+          if (opcion == '6') {crearlineas(recorrido6);document.getElementById('pac-input').innerHTML = "Linea 6";}
+          if (opcion == '7') {crearlineas(recorrido7);document.getElementById('pac-input').innerHTML = "Linea 7";}
+          if (opcion == '8v') {crearlineas(recorrido8Verde);document.getElementById('pac-input').innerHTML = "Linea 8 Verde";} 
+          if (opcion == '8r') {crearlineas(recorrido8Rojo);document.getElementById('pac-input').innerHTML = "Linea 8 Rojo";}
+          if (opcion == '9v') {crearlineas(recorrido9Verde);document.getElementById('pac-input').innerHTML = "Linea 9 Verde";}
+          if (opcion == '9r') {crearlineas(recorrido9Rojo);document.getElementById('pac-input').innerHTML = "Linea 8 Rojo";}
+          if (opcion == '10') {crearlineas(recorrido10);document.getElementById('pac-input').innerHTML = "Linea 10";}
+          if (opcion == '11') {crearlineas(recorrido11);document.getElementById('pac-input').innerHTML = "Linea 11";}
+          if (opcion == '12') {crearlineas(recorrido12);document.getElementById('pac-input').innerHTML = "Linea 12";}
+          if (opcion == '13') {crearlineas(recorrido13);document.getElementById('pac-input').innerHTML = "Linea 13";}
+          if (opcion == '14') {crearlineas(recorrido14);document.getElementById('pac-input').innerHTML = "Linea 14";}
+          if (opcion == '15') {crearlineas(recorrido15);document.getElementById('pac-input').innerHTML = "Linea 15";}
+          if (opcion == '16') {crearlineas(recorrido16);document.getElementById('pac-input').innerHTML = "Linea 16";}
+          if (opcion == '17') {crearlineas(recorrido17);document.getElementById('pac-input').innerHTML = "Linea 17";}
+          if (opcion == '18') {crearlineas(recorrido18);document.getElementById('pac-input').innerHTML ="Linea 18";}
         
          // Creo el circulo
           var lineSymbol = {

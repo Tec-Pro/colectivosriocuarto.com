@@ -4,7 +4,7 @@
 		<title>Colectivos R&iacute;o Cuarto</title>
 		<link rel="shortcut icon" href="imagenes/icon.ico" type="image/x-icon"/> 
 		<meta charset="UTF-8">
-		<meta name="description" content="Colectivos de Río Cuarto Se trata de una aplicación sencilla y fácil de usar la cual contiene todos los horarios y recorridos de todas las lineas urbanas e interurbanas de la Ciudad de Río Cuarto, Córdoba, Argentina.">
+		<meta name="description" content="Colectivos de R&iaCute;o Cuarto se trata de una aplicaci&oacute;n sencilla y f&aacute;cil de usar la cual contiene todos los horarios y recorridos de todas las lineas urbanas E interurbAnas de la CIudad de R&iacute;o Cuarto, C&oacute;rdoba, Argentina.">
 		<meta name="keywords" contenct="HTML5, CSS3, Javascript, PHP">
 		<link rel="stylesheet" href="css/enviarEmail.css">	
 	</head>	
