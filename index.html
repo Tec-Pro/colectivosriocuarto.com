@@ -5,13 +5,23 @@
 		<link rel="shortcut icon" href="imagenes/icon.ico" type="image/x-icon"/> 
 		<meta charset="UTF-8">
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-		<meta name="description" content="Colectivos de R&iaCute;o Cuarto se trata de una aplicaci&oacute;n sencilla y f&aacute;cil de usar la cual contiene todos los horarios y recorridos de todas las lineas urbanas E interurbAnas de la CIudad de R&iacute;o Cuarto, C&oacute;rdoba, Argentina.">
+		<meta name="description" content="Colectivos de R&iaCute;o cuarto se trata de una aplicaci&oacute;n sencilla y f&aacute;cil de usar la cual contiene todos los horarios y recorridos de todas las lineas urbanas e interurbanas de la ciudad de R&iacute;o Cuarto, C&oacute;rdoba, Argentina.">
 		<meta name="keywords" contenct="HTML5, CSS3, Javascript, PHP">
 		<link rel="stylesheet" href="css/home.css">	
 		<script type="text/javascript"
 		src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCWcDSkf5DDRXiMp-jD-BcFdFEDRHycSeY&sensor=false&libraries=geometry&region=AR&language=es"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/home.js"> </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-50388654-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
 	</head>
 	<body onload="initialize()">
 		<div id="agrupar">
@@ -38,12 +48,15 @@
         	<p>
         		<a href="https://www.facebook.com/TecProSoftware"><img src="imagenes/facebook.png"></a> &nbsp; &nbsp;       
 				<a href="https://play.google.com/store/apps/details?id=org.tecpro.colectivos&hl=es_419"><img src="imagenes/googlePlay.png"></a>
-			</p>
+			</p>			
 			<br>
 			<p><label id="resultado">Resultados:</label></p>
 			<br>
 			<ul id="listaResultados">
 			</ul>
+			<br>
+			<center> <p><a href="https://www.facebook.com/CyLjoyas"><img src="imagenes/lcjoyas.png" id="publi3" border="0"></a></p></center> 
+			<br>	
 		</section>	
 		</div>
 		<label id="pac-input"></label>	
