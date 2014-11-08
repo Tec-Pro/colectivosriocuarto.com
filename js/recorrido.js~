@@ -1,20 +1,12 @@
 <!--
-
 var map;
-var contador = 0;
-var geocoder;
-var marcadorHasta = 'http://www.colectivosriocuarto.com/imagenes/hasta.png';
-var marcadorDesde = 'http://www.colectivosriocuarto.com/imagenes/desdee.png';
-var marcadores = []; // Se tiene que crear un array en el que se guarde el número de marcadores que hay en el mapa
-var circulos = [];
-var dibujar;
-var mejor = ["ninguno",99999999.0];
-var mejorRecorrido = [];
-var markerDesde;
-var markerHasta;
-var cuadrasACaminar;
- 
-var recorrido1Rojo= [-64.389053,-33.113548, -64.389099,-33.113609, -64.388969,-33.113659, -64.386383,-33.11417, -64.38597900000001,-33.114319, -64.38191999999999,-33.115261, -64.38176,-33.115421, -64.381241,-33.115608, -64.38078299999999,-33.11552, -64.379417,-33.115829, -64.34520000000001,-33.12402, -64.345848,-33.125919, -64.345032,-33.126171, -64.33981300000001,-33.130421, -64.342133,-33.13245, -64.343468,-33.133759, -64.342934,-33.134251, -64.34168200000001,-33.135181, -64.336967,-33.13628, -64.337677,-33.138409, -64.333054,-33.139439, -64.33236700000001,-33.13726, -64.327591,-33.138359, -64.32762099999999,-33.140659, -64.32392900000001,-33.141479, -64.32240299999999,-33.136829, -64.31326300000001,-33.138939, -64.31242399999999,-33.136372, -64.32308999999999,-33.133919, -64.322678,-33.132648, -64.331619,-33.130611, -64.33564800000001,-33.12962, -64.337593,-33.128319, -64.33978999999999,-33.130379, -64.34320099999999,-33.127468, -64.34269000000001,-33.125809, -64.348991,-33.12426, -64.35862,-33.122021, -64.36406700000001,-33.120701, -64.36412799999999,-33.120399, -64.364288,-33.12027, -64.36443300000001,-33.12022, -64.36473100000001,-33.120289, -64.364952,-33.12051, -64.367729,-33.119911, -64.369247,-33.119659, -64.370903,-33.119221, -64.372299,-33.118912, -64.37142900000001,-33.116409, -64.38050800000001,-33.114208, -64.380966,-33.11544, -64.38127900000001,-33.115211, -64.381477,-33.1152, -64.381844,-33.115238, -64.385834,-33.114311, -64.386414,-33.114079, -64.389038,-33.113548];
+var ctaLayer;
+var ctaLayer1;
+var mapOptions;
+var puntos = [];
+var dibujadas =[]
+
+ var recorrido1Rojo= [-64.389053,-33.113548, -64.389099,-33.113609, -64.388969,-33.113659, -64.386383,-33.11417, -64.38597900000001,-33.114319, -64.38191999999999,-33.115261, -64.38176,-33.115421, -64.381241,-33.115608, -64.38078299999999,-33.11552, -64.379417,-33.115829, -64.34520000000001,-33.12402, -64.345848,-33.125919, -64.345032,-33.126171, -64.33981300000001,-33.130421, -64.342133,-33.13245, -64.343468,-33.133759, -64.342934,-33.134251, -64.34168200000001,-33.135181, -64.336967,-33.13628, -64.337677,-33.138409, -64.333054,-33.139439, -64.33236700000001,-33.13726, -64.327591,-33.138359, -64.32762099999999,-33.140659, -64.32392900000001,-33.141479, -64.32240299999999,-33.136829, -64.31326300000001,-33.138939, -64.31242399999999,-33.136372, -64.32308999999999,-33.133919, -64.322678,-33.132648, -64.331619,-33.130611, -64.33564800000001,-33.12962, -64.337593,-33.128319, -64.33978999999999,-33.130379, -64.34320099999999,-33.127468, -64.34269000000001,-33.125809, -64.348991,-33.12426, -64.35862,-33.122021, -64.36406700000001,-33.120701, -64.36412799999999,-33.120399, -64.364288,-33.12027, -64.36443300000001,-33.12022, -64.36473100000001,-33.120289, -64.364952,-33.12051, -64.367729,-33.119911, -64.369247,-33.119659, -64.370903,-33.119221, -64.372299,-33.118912, -64.37142900000001,-33.116409, -64.38050800000001,-33.114208, -64.380966,-33.11544, -64.38127900000001,-33.115211, -64.381477,-33.1152, -64.381844,-33.115238, -64.385834,-33.114311, -64.386414,-33.114079, -64.389038,-33.113548];
 
         var recorrido1Verde=[-64.366516,-33.096962, -64.36798899999999,-33.101337, -64.369469,-33.105721, -64.37146,-33.110577, -64.37206999999999,-33.111275, -64.372665,-33.111946, -64.373024,-33.11256, -64.373352,-33.113171, -64.37400100000001,-33.11438, -64.374641,-33.115585, -64.375229,-33.116795, -64.37003300000001,-33.118118, -64.36340300000001,-33.119705, -64.357086,-33.121201, -64.348953,-33.123138, -64.34625200000001,-33.123768, -64.345169,-33.124039, -64.34586299999999,-33.125969, -64.345001,-33.126141, -64.339821,-33.130417, -64.33725699999999,-33.127975, -64.33445,-33.128658, -64.33530399999999,-33.131145, -64.312477,-33.136375, -64.313225,-33.138916, -64.322395,-33.136841, -64.323883,-33.141495, -64.326988,-33.140778, -64.32589,-33.137379, -64.333496,-33.135693, -64.334976,-33.140381, -64.33963,-33.139366, -64.33809700000001,-33.134666, -64.341049,-33.133942, -64.34153000000001,-33.135216, -64.343491,-33.133785, -64.33974499999999,-33.13031, -64.34201,-33.128433, -64.343231,-33.127407, -64.342636,-33.125797, -64.34968600000001,-33.124146, -64.356331,-33.122574, -64.35849,-33.122036, -64.36393,-33.12077, -64.364052,-33.12067, -64.364159,-33.120407, -64.364319,-33.12027, -64.364609,-33.120243, -64.36486100000001,-33.120335, -64.365005,-33.120522, -64.366287,-33.120205, -64.36763000000001,-33.119946, -64.369202,-33.119667, -64.37075,-33.119324, -64.372322,-33.118965, -64.371887,-33.117687, -64.37145200000001,-33.116402, -64.37439000000001,-33.115654, -64.37426000000001,-33.115021, -64.373451,-33.11348, -64.37305499999999,-33.11272, -64.372612,-33.11198, -64.371994,-33.111294, -64.371399,-33.110607, -64.36939200000001,-33.105755, -64.368759,-33.103764, -64.368591,-33.103264, -64.368431,-33.102764, -64.368088,-33.101761, -64.36644699999999,-33.096966];
 
@@ -40,7 +32,7 @@ var recorrido1Rojo= [-64.389053,-33.113548, -64.389099,-33.113609, -64.388969,-3
 
         var recorrido9Verde=[-64.300665,-33.10943, -64.30258,-33.108651, -64.303004,-33.108424, -64.305591,-33.107314, -64.305667,-33.10725800000001, -64.305654,-33.106937, -64.309171,-33.105438, -64.309695,-33.104886, -64.310109,-33.10454, -64.310421,-33.1043, -64.311103,-33.103314, -64.312266,-33.101739, -64.31246,-33.101471, -64.313597,-33.10054300000001, -64.314912,-33.099563, -64.318412,-33.102813, -64.322513,-33.106581, -64.327462,-33.102865, -64.33216400000002,-33.09929, -64.338154,-33.094685, -64.33924,-33.095682, -64.341619,-33.09388, -64.340237,-33.092542, -64.340395,-33.09238, -64.353504,-33.092408, -64.353514,-33.097659, -64.35332,-33.097934, -64.346367,-33.103212, -64.340933,-33.107427, -64.34199,-33.108426, -64.340849,-33.109332, -64.341925,-33.110305, -64.342481,-33.110894, -64.343364,-33.111503, -64.346057,-33.113341, -64.346218,-33.113482, -64.346335,-33.113648, -64.346518,-33.114059, -64.347381,-33.116361, -64.347542,-33.116551, -64.347761,-33.116722, -64.347795,-33.116927, -64.347706,-33.117091, -64.347654,-33.117327, -64.348083,-33.118686, -64.34804,-33.118941, -64.348828,-33.121439, -64.349368,-33.123097, -64.348333,-33.123327, -64.345315,-33.124047, -64.345936,-33.125949, -64.34499,-33.126217, -64.341644,-33.128939, -64.339885,-33.130359, -64.339613,-33.13017, -64.337562,-33.128323, -64.337159,-33.128023, -64.335273,-33.128482, -64.334512,-33.128667, -64.335304,-33.131162, -64.32773,-33.13286, -64.320116,-33.134625, -64.315486,-33.135686, -64.312495,-33.136371, -64.3147368,-33.1435197, -64.3178631,-33.1428008, -64.317378,-33.1415784, -64.318854,-33.1412179, -64.3178151,-33.1379186, -64.322412,-33.136834, -64.323904,-33.141418, -64.326993,-33.140678, -64.325869,-33.137424, -64.333479,-33.13569, -64.335004,-33.140389, -64.341144,-33.13901500000001, -64.341475,-33.140313, -64.34302,-33.139942, -64.342109,-33.14236, -64.341372,-33.144599, -64.340708,-33.146395, -64.341264,-33.14655, -64.341632,-33.147354, -64.342134,-33.147249, -64.34231,-33.147249, -64.342758,-33.147162, -64.342617,-33.146651, -64.343723,-33.146409, -64.343358,-33.14536, -64.347726,-33.144385, -64.345714,-33.138128, -64.345276,-33.136672, -64.346145,-33.13646000000001, -64.345763,-33.135467, -64.345928,-33.13541, -64.345681,-33.134639, -64.344795,-33.132111, -64.343259,-33.12762, -64.342649,-33.125788, -64.346659,-33.124866, -64.34607500000001,-33.122947, -64.348096,-33.122456, -64.347037,-33.119043, -64.347886,-33.118808, -64.347532,-33.117685, -64.34738,-33.117279, -64.347061,-33.117027, -64.347063,-33.116651, -64.347122,-33.11647, -64.346919,-33.115557, -64.346559,-33.114492, -64.346193,-33.113527, -64.345979,-33.113356, -64.342383,-33.110922, -64.341547,-33.110169, -64.33961,-33.108396, -64.342593,-33.10606, -64.345148,-33.104116, -64.349048,-33.101107, -64.353156,-33.097959, -64.353434,-33.097637, -64.353429,-33.094512, -64.353434,-33.092471, -64.349084,-33.092464, -64.340428,-33.092513, -64.340362,-33.092589, -64.341708,-33.09386, -64.341003,-33.094413, -64.339233,-33.095754, -64.338154,-33.094767, -64.33653,-33.095976, -64.334535,-33.09751, -64.332106,-33.099378, -64.322502,-33.106671, -64.318723,-33.103168, -64.314885,-33.099674, -64.312615,-33.101421, -64.312397,-33.101645, -64.310539,-33.104187, -64.310407,-33.104438, -64.310311,-33.104821, -64.309829,-33.105234, -64.309288,-33.105448, -64.305799,-33.106981, -64.305735,-33.10711, -64.305828,-33.107201, -64.305958,-33.107275, -64.305939,-33.10743300000001, -64.305707,-33.107437, -64.30543500000002,-33.107453, -64.302989,-33.108485, -64.302617,-33.108701, -64.30071,-33.109486, -64.300665,-33.10943];
 
-        var recorrido10=[-64.325165,-33.145315, -64.327569,-33.144773, -64.327604,-33.146134, -64.336149,-33.144232, -64.33532900000002,-33.141669, -64.342959,-33.139953, -64.340738,-33.14633800000001, -64.341358,-33.146552, -64.34165500000002,-33.147321, -64.342133,-33.147216, -64.34224,-33.147243, -64.342757,-33.147135, -64.342619,-33.146646, -64.343669,-33.146402, -64.343313,-33.145335, -64.347729,-33.144373, -64.346816,-33.141526, -64.345287,-33.136674, -64.346128,-33.136497, -64.345772,-33.135467, -64.34593,-33.135344, -64.345525,-33.134191, -64.343453,-33.12804, -64.342682,-33.125776, -64.348693,-33.124361, -64.351623,-33.123692, -64.35372,-33.130218, -64.359863,-33.129109, -64.361231,-33.133033, -64.360671,-33.133215, -64.36348700000002,-33.142288, -64.36197600000001,-33.142632, -64.363969,-33.149054, -64.3684015,-33.1479752, -64.3696736,-33.1518731, -64.373392,-33.1510282, -64.3718973,-33.1458519, -64.3717938,-33.1458329, -64.3685148,-33.1364171, -64.364902,-33.137415000000004, -64.363316,-33.133447, -64.362385,-33.131217, -64.360807,-33.127233, -64.352282,-33.129134, -64.350207,-33.12284, -64.348365,-33.12335, -64.348249,-33.123276, -64.34527,-33.124049, -64.347607,-33.131193, -64.348644,-33.134708, -64.348982,-33.135828, -64.343782,-33.137072, -64.346227,-33.14476, -64.343401,-33.145375, -64.343733,-33.146398, -64.342656,-33.146665, -64.342795,-33.147163, -64.342272,-33.147271, -64.342118,-33.147253, -64.341624,-33.147358, -64.341335,-33.146585, -64.34071,-33.146427, -64.340014,-33.14842, -64.339806,-33.148466, -64.340569,-33.146422, -64.341107,-33.144678, -64.342243,-33.141511, -64.342748,-33.140055, -64.338726,-33.140968, -64.335441,-33.141702, -64.33623,-33.144271, -64.327563,-33.146186, -64.325599,-33.14658, -64.325165,-33.145315];
+        var recorrido10=[-64.32516464181569,-33.14531518066434, -64.32756880794233,-33.1447725715604, -64.32760374073882,-33.14613397138766, -64.33614899702081,-33.14423199919616, -64.33532911965108,-33.14166851774311, -64.34295888882915,-33.13995284565388, -64.34073769803466,-33.146338397116, -64.3413584090612,-33.14655195425456, -64.34165485882238,-33.14732057305183, -64.34213256840543,-33.14721621984046, -64.34223961850387,-33.14724341667273, -64.34275723476726,-33.14713500823887, -64.34261899956759,-33.14664645974605, -64.34366893578506,-33.14640182684655, -64.3433128743463,-33.14533524152576, -64.34772872137387,-33.14437309698005, -64.34681635176891,-33.14152606376781, -64.34528705130008,-33.13667364078653, -64.34612828920572,-33.13649694245685, -64.34577164913331,-33.13546682984353, -64.34592989519294,-33.13534367388853, -64.34552540208635,-33.13419091680226, -64.34345278945516,-33.12803993052486, -64.34268230404821,-33.12577598565976, -64.34869344249499,-33.12436087501683, -64.35162313564541,-33.12369169510286, -64.3537199674585,-33.13021813870037, -64.35986319073697,-33.12910908415281, -64.36123099298642,-33.13303258397367, -64.36067111890546,-33.13321503743448, -64.36348698072868,-33.14228776490879, -64.3619757745242,-33.14263194697044, -64.36396899292151,-33.14905446231138, -64.36856448032107,-33.14802806433977, -64.36636921908202,-33.14092725110287, -64.36490200347035,-33.13741508435265, -64.36331573121696,-33.1334473849786, -64.36238459114136,-33.13121704030215, -64.3608068716764,-33.12723309746326, -64.35228249939888,-33.12913437211196, -64.3502073063993,-33.12283971159224, -64.34836542727068,-33.123350155733, -64.34824873177989,-33.12327551563416, -64.34527016116111,-33.12404948904325, -64.34760706880863,-33.13119330717815, -64.34864430747629,-33.13470817873648, -64.34898244093301,-33.13582771131153, -64.343781729369,-33.13707224887551, -64.34622676720113,-33.14475969029385, -64.34340060167887,-33.14537455206776, -64.34373326845505,-33.14639827379473, -64.3426560916254,-33.14666500387111, -64.34279500563623,-33.14716255152874, -64.34227249977649,-33.14727059945929, -64.3421182287872,-33.14725319852495, -64.34162387443347,-33.1473579499743, -64.34133513517452,-33.1465853651025, -64.34071017510037,-33.14642665456785, -64.34001445115581,-33.14841973253186, -64.33980605559339,-33.14846585903165, -64.34056934126164,-33.1464221377474, -64.34110686302157,-33.14467775521355, -64.3422427031898,-33.14151109508482, -64.34274781846268,-33.14005519562389, -64.33872640811511,-33.14096792483679, -64.3354410525051,-33.14170207388097, -64.3362296139274,-33.14427125921178, -64.32756290627731,-33.1461859012378, -64.32559899551612,-33.14657961667032, -64.32516464181569,-33.14531518066434];
 
         var recorrido11=[-64.328504,-33.150737, -64.32792,-33.14886, -64.326499,-33.149171, -64.325171,-33.145313, -64.327603,-33.144692000000006, -64.327568,-33.146105, -64.336167,-33.144248, -64.335369,-33.141705, -64.342895,-33.139965, -64.341087,-33.145206, -64.340743,-33.146375, -64.341368,-33.146561, -64.341637,-33.147304, -64.342157,-33.147237, -64.342233,-33.147249, -64.342719,-33.147127, -64.342617,-33.146663, -64.343669,-33.146409, -64.343343,-33.145363, -64.347727,-33.144391, -64.345278,-33.136678, -64.346061,-33.136503, -64.345781,-33.135513, -64.34595,-33.135425, -64.344446,-33.130983, -64.34321,-33.127385, -64.342684,-33.125789, -64.346785,-33.124817, -64.349608,-33.124142, -64.351602,-33.123704, -64.352948,-33.127932, -64.360357,-33.126349, -64.36173,-33.12612, -64.364709,-33.125571, -64.366823,-33.131492, -64.368285,-33.135619, -64.369808,-33.140088, -64.371184,-33.143969, -64.371827,-33.14581700000001, -64.371931,-33.14587, -64.372748,-33.148401, -64.3734226,-33.1510562, -64.3696369,-33.1518726, -64.36856000000002,-33.14806, -64.363912,-33.149053, -64.361309,-33.14067, -64.3590583,-33.1335124, -64.3580077,-33.1337204, -64.3562124,-33.1281843, -64.352284,-33.12908, -64.350201,-33.122912, -64.345285,-33.124072, -64.349005,-33.135831, -64.343804,-33.13701, -64.346224,-33.144751, -64.343433,-33.14542, -64.34374100000001,-33.146409, -64.342679,-33.146715, -64.342822,-33.147171, -64.34223,-33.147329, -64.342127,-33.147259, -64.341607,-33.147344, -64.341327,-33.14659600000001, -64.34075,-33.146435, -64.339981,-33.148445, -64.339831,-33.148438, -64.340777,-33.145863, -64.342774,-33.140039, -64.33543,-33.141738, -64.336247,-33.144281, -64.331634,-33.145275, -64.333003,-33.149729, -64.328504,-33.150737];
 
@@ -59,333 +51,82 @@ var recorrido1Rojo= [-64.389053,-33.113548, -64.389099,-33.113609, -64.388969,-3
         var recorrido18=[-64.36026295345481,-33.11238633769455, -64.35893573691865,-33.11352316461513, -64.35864528510084,-33.11253878032269, -64.36014718389626,-33.11220306451099, -64.35881840773213,-33.10838378709067, -64.35456597210553,-33.10938004197679, -64.35429463162637,-33.11086230043494, -64.3519980129753,-33.11324258440897, -64.35387879358508,-33.11409990441662, -64.35337180608239,-33.11531391895763, -64.35236791486678,-33.11693110733692, -64.35191146485668,-33.11753569320688, -64.35037444961117,-33.11900132004107, -64.35016739933036,-33.11920810624246, -64.35018392908816,-33.11920121801897, -64.34827265319088,-33.11968596213351, -64.3493676401115,-33.12314346110867, -64.3483644988701,-33.12334123102257, -64.34702431323103,-33.11903862954338, -64.34900163146654,-33.11856201128616, -64.34872803475602,-33.11766316523892, -64.34965585074062,-33.11744033336181, -64.35156102871227,-33.11659353966326, -64.3524195652134,-33.11529006163986, -64.35258751425467,-33.11357832553956, -64.35189782901797,-33.11323519278731, -64.3542015723459,-33.11084495263029, -64.35454126411366,-33.1093365813516, -64.35889144764188,-33.10834249782835, -64.36026295345481,-33.11238633769455];
 
 
+function crearlineas(recorrido){
+  puntos = [];
+  for ( var i = 0; i < ( recorrido.length-1) ; i = i+2) {
+    var punto = new google.maps.LatLng(recorrido[i+1],recorrido[i]);
+    puntos.push(punto);
+  };
+}
 
- 
-var recorridosYNombres =  ["L&iacute;nea 1 verde",recorrido1Verde,
-        "L&iacute;nea 1 rojo",recorrido1Rojo,
-        "L&iacute;nea 2 verde",recorrido2Verde,
-        "L&iacute;nea 2 rojo",recorrido2Rojo,
-        "L&iacute;nea 3",recorrido3,
-        "L&iacute;nea 4",recorrido4,
-        "L&iacute;nea 5",recorrido5,
-        "L&iacute;nea 6",recorrido6,
-        "L&iacute;nea 7",recorrido7,
-        "L&iacute;nea 8 verde",recorrido8Verde,
-        "L&iacute;nea 8 rojo",recorrido8Rojo,
-        "L&iacute;nea 9 verde",recorrido9Verde,
-        "L&iacute;nea 9 rojo",recorrido9Rojo,
-        "L&iacute;nea 10",recorrido10,
-        "L&iacute;nea 11",recorrido11,
-        "L&iacute;nea 12",recorrido12,
-        "L&iacute;nea 13",recorrido13,
-        "L&iacute;nea 14",recorrido14,
-        "L&iacute;nea 15",recorrido15,
-        "L&iacute;nea 16",recorrido16,
-        "L&iacute;nea 17",recorrido17,
-        "L&iacute;nea 18",recorrido18];
 
-var mapOptions = {
+function initialize() {
+         mapOptions = {
           center: new google.maps.LatLng(-33.1265506, -64.3414028),
           zoom: 12,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
+          mapTypeId: google.maps.MapTypeId.ROADMAP };
+       map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
-function initialize() { //Inicializa el mapa en Rio Cuarto
-        geocoder = new google.maps.Geocoder();        
-       map = new google.maps.Map(document.getElementById("map_canvas"),
-            mapOptions);
+       var input = (document.getElementById('pac-input'));
+ 	   map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+   }
 
-	document.getElementById("resultado").style.display="none";
-
-  
-  var input = (document.getElementById('pac-input'));
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
-
-  /*$(function(){
-    var arrImagenes = ['http://localhost/colectivosriocuarto.com/imagenes/publicidad1.jpg'];
-    var imagenActual = arrImagenes[0];
-    var tiempo = 5000;
-    setInterval( function(){
-        do{
-            var randImage = arrImagenes[Math.ceil(Math.random()*(arrImagenes.length))];
-        }while( randImage == imagenActual )
-        imagenActual = randImage;
-        cambiarImagenFondo(imagenActual);
-    }, tiempo)*/
-
-
-//click listener para poner marcador en mapa     
-google.maps.event.addListener(map, 'click', function(e) { 
-    placeMarker(e.latLng, map);
-  });
-}
-
-
-
-// funcion que pone marcador donde se hace click
-function placeMarker(position, map) {
- if (contador<2){
-  if (contador == 0){
-  markerDesde = new google.maps.Marker({
-    position: position,
-    map: map,
-    icon : marcadorDesde,
-    draggable: true});   
-  //marcadores.push(markerDesde);
-  google.maps.event.addListener(markerDesde,'dragend',function(event) {
-        //if (contador == 2){
-			buscarAux();
-		//}
-    });
-  } else {
-    markerHasta = new google.maps.Marker({
-      position: position,
-      map: map,
-      icon : marcadorHasta,
-      draggable: true }); 
-    //marcadores.push(markerHasta);
-    google.maps.event.addListener(markerHasta,'dragend',function(event) {
-      //  if (contador == 2){
-			buscarAux();
-		//}
-    });
-  }
-  if (contador == 0){
-  	cuadrasACaminar = parseInt(document.getElementById("distancia").value) * 100;
-    // Add circle overlay and bind to marker
-    var circle = new google.maps.Circle({
-      map: map,
-      radius: cuadrasACaminar,
-      strokeColor: '#AA0000',
-     strokeWeight: 0,
-     strokeOpacity: 0.5,
-      fillColor: '#AA0000',
-     fillOpacity: 0.5 });
-    circle.bindTo('center', markerDesde, 'position');
-    circulos.push(circle);
-  } 
-  if (contador == 1){
-  // Add circle overlay and bind to marker
-  cuadrasACaminar = parseInt(document.getElementById("distancia").value) * 100;
-    var circle = new google.maps.Circle({
-      map: map,
-      radius: cuadrasACaminar,    
-      strokeColor: '#22FF00',
-      strokeWeight: 0,
-      strokeOpacity: 0.5,
-      fillColor: '#22FF00',
-      fillOpacity: 0.5 });
-    circle.bindTo('center', markerHasta, 'position');
-    circulos.push(circle);
-    buscarAux();
-  }
-  map.panTo(position);
-  contador++;
-}
-}
-
-
-  // coloca los marcadores en las direcciones buscadas
-function codeAddress() {
-    if ( (document.getElementById("origen").value != '') && (document.getElementById("destino").value != '')) {
-    	cuadrasACaminar = parseInt(document.getElementById("distancia").value) * 100;
-        for ( var i = 0; i < ( circulos.length) ; i++) { //elimino todos los circulos
-            circulos[i].setMap(null);
-        }; 
-      //  for ( var i = 0; i < ( marcadores.length) ; i++) { //elimino todos los marcadores
-      //      marcadores[i].setMap(null);
-      //  }; 
-        if (markerHasta != null){
-            markerHasta.setMap(null);
+   function cambiar(){
+				var opcion = document.getElementById('lineas').value;
+        if(opcion != ""){
+          for ( var i = 0; i < ( dibujadas.length) ; i++) { //elimino todos los marcadores
+            dibujadas[i].setMap(null);
+          };         
+          if (opcion == '1v') {crearlineas(recorrido1Verde);document.getElementById('pac-input').innerHTML ="Linea 1 Verde";} 
+          if (opcion == '1r') {crearlineas(recorrido1Rojo);document.getElementById('pac-input').innerHTML = "Linea 1 Rojo";} 
+          if (opcion == '2v') {crearlineas(recorrido2Verde);document.getElementById('pac-input').innerHTML ="Linea 2 Verde" }; 
+          if (opcion == '2r') {crearlineas(recorrido2Rojo);document.getElementById('pac-input').innerHTML = "Linea 2 Rojo";} 
+          if (opcion == '3') {crearlineas(recorrido3);document.getElementById('pac-input').innerHTML = "Linea 3";}
+          if (opcion == '4') {crearlineas(recorrido4);document.getElementById('pac-input').innerHTML = "Linea 4";}
+          if (opcion == '5') {crearlineas(recorrido5);document.getElementById('pac-input').innerHTML = "Linea 5";}
+          if (opcion == '6') {crearlineas(recorrido6);document.getElementById('pac-input').innerHTML = "Linea 6";}
+          if (opcion == '7') {crearlineas(recorrido7);document.getElementById('pac-input').innerHTML = "Linea 7";}
+          if (opcion == '8v') {crearlineas(recorrido8Verde);document.getElementById('pac-input').innerHTML = "Linea 8 Verde";} 
+          if (opcion == '8r') {crearlineas(recorrido8Rojo);document.getElementById('pac-input').innerHTML = "Linea 8 Rojo";}
+          if (opcion == '9v') {crearlineas(recorrido9Verde);document.getElementById('pac-input').innerHTML = "Linea 9 Verde";}
+          if (opcion == '9r') {crearlineas(recorrido9Rojo);document.getElementById('pac-input').innerHTML = "Linea 8 Rojo";}
+          if (opcion == '10') {crearlineas(recorrido10);document.getElementById('pac-input').innerHTML = "Linea 10";}
+          if (opcion == '11') {crearlineas(recorrido11);document.getElementById('pac-input').innerHTML = "Linea 11";}
+          if (opcion == '12') {crearlineas(recorrido12);document.getElementById('pac-input').innerHTML = "Linea 12";}
+          if (opcion == '13') {crearlineas(recorrido13);document.getElementById('pac-input').innerHTML = "Linea 13";}
+          if (opcion == '14') {crearlineas(recorrido14);document.getElementById('pac-input').innerHTML = "Linea 14";}
+          if (opcion == '15') {crearlineas(recorrido15);document.getElementById('pac-input').innerHTML = "Linea 15";}
+          if (opcion == '16') {crearlineas(recorrido16);document.getElementById('pac-input').innerHTML = "Linea 16";}
+          if (opcion == '17') {crearlineas(recorrido17);document.getElementById('pac-input').innerHTML = "Linea 17";}
+          if (opcion == '18') {crearlineas(recorrido18);document.getElementById('pac-input').innerHTML ="Linea 18";}
+        
+         // Creo el circulo
+          var lineSymbol = {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 6,
+            strokeColor: '#393',
+            fillColor: '#393',
+            fillOpacity: 1
+          };
+          //creo la linea
+          var dibujar = new google.maps.Polyline({
+            path: puntos,
+            geodesic: true,
+            strokeColor: '#058907',
+            strokeOpacity: 1.0,
+            strokeWeight: 2,
+            icons: [{
+              icon: lineSymbol,
+              offset: '100%'
+            }]
+          });
+          dibujar.setMap(map);        
         }
-        if (markerDesde != null){
-            markerDesde.setMap(null);
-        }
-        var address = document.getElementById("origen").value + ",rio cuarto, cordoba";
-        //marcadores.length = 0;
-        circulos.length = 0;
-        geocoder.geocode( { 'address': address}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                map.setCenter(results[0].geometry.location);
-                    markerDesde = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location,
-                        icon : marcadorDesde,
-                        draggable: true
-                    });
-                google.maps.event.addListener(markerDesde,'dragend',function(event) {
-                  //  if (contador == 2){
-                        buscarAux();
-                  //  }
-                });                
-                contador++;
-               // marcadores.push(markerDesde);
-                var circle = new google.maps.Circle({
-                    map: map,
-                    radius: cuadrasACaminar,    
-                    strokeColor: '#AA0000',
-                    strokeWeight: 0,
-                    strokeOpacity: 0.5,
-                    fillColor: '#AA0000',
-                    fillOpacity: 0.5 
-                });
-                circle.bindTo('center', markerDesde , 'position');
-                circulos.push(circle);
-            } else {
-                alert('La direccion de origen no se ha encontrado ' + status);
-            }
-        });
-        var address = document.getElementById("destino").value + ",rio cuarto, cordoba";
-        geocoder.geocode( { 'address': address}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                map.setCenter(results[0].geometry.location);
-                    markerHasta = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location,
-                        icon : marcadorHasta,
-                        draggable: true,
-                    });
-                google.maps.event.addListener(markerHasta,'dragend',function(event) {
-                    //if (contador == 2){
-                        buscarAux();
-                   // }
-                });
-                contador++;
-                var circle = new google.maps.Circle({
-                    map: map,
-                    radius: cuadrasACaminar,    
-                    strokeColor: '#22FF00',
-                    strokeWeight: 0,
-                    strokeOpacity: 0.5,
-                    fillColor: '#22FF00',
-                    fillOpacity: 0.5 
-                });
-                circle.bindTo('center', markerHasta, 'position');
-                //marcadores.push(markerHasta);
-                circulos.push(circle); 
-                buscarAux();
-            } else {
-                alert('La direccion de destino no se ha encontrado ' + status);
-            }
-        });
-    } else {
-        alert('Por favor ingrese ambas drecciones');
-    }
-}
-
-    function buscarAux() {
-        if ((markerHasta != null) && (markerDesde != null)){
-        	cuadrasACaminar = parseInt(document.getElementById("distancia").value) * 100;
-            mejor = ["ninguno",99999999.0];
-            var lineasQueLlegan=  [];
-            var j=1;
-            while(j<recorridosYNombres.length){
-                var lin = recorridosYNombres[j];
-                var dist = perteneceAlRadio(lin ,markerDesde.getPosition(),cuadrasACaminar,markerHasta.getPosition());
-                if(dist!=-1){
-                    retornoMinimo(recorridosYNombres[j-1],dist,lin);
-                    lineasQueLlegan.push(recorridosYNombres[j-1]);                 
-                    lineasQueLlegan.push( (dist / 1000).toFixed(2));
-					lineasQueLlegan.push(recorridosYNombres[j]); 
-                }
-                j = j+2;
-            }
-            if(mejor[0] == "ninguno") {
-                    mejorRecorrido = null;
-            }
-            if (dibujar != null){
-              dibujar.setMap(null);			    
-            }
-            if(mejorRecorrido!=null) {
-              document.getElementById('pac-input').innerHTML = mejor[0]	;
-              var recoCorrecto = coord(mejorRecorrido);
-                // Creo el circulo
-              var lineSymbol = {
-                path: google.maps.SymbolPath.CIRCLE,
-                scale: 6,
-                strokeColor: '#393',
-                fillColor: '#393',
-                fillOpacity: 1
-              };
-              //creo la linea
-              dibujar = new google.maps.Polyline({
-                path: recoCorrecto,
-                geodesic: true,
-                strokeColor: '#058907',
-                strokeOpacity: 1.0,
-                strokeWeight: 2,
-                icons: [{
-                  icon: lineSymbol,
-                  offset: '100%'
-                }]
-              });
-              dibujar.setMap(map);
-              animateCircle(dibujar);
-            }
-            if (lineasQueLlegan.length > 0){
-            $("#listaResultados").empty();
-              var i = 2;
-              var listadoResultado = document.getElementById("listaResultados");
-              while (i < lineasQueLlegan.length ){
-              	var li = document.createElement('li');
-              	li.innerHTML = lineasQueLlegan[i-2] + ", " + lineasQueLlegan[i-1] + " Km";
-              	listadoResultado.appendChild(li);
-              	i = i+3;
-              }
-              	$( "#listaResultados li" ).click(function() {
-					var position = 0;
-				    var currentNode = this;
-				    var firstNode = currentNode.parentNode.firstChild;					
-				    while(firstNode != currentNode) {
-				        position++;
-				        currentNode = currentNode.previousSibling;
-				    }
-				    var t = 0;
-				    var listax = document.getElementById("listaResultados").getElementsByTagName("li");
-				    while (t < listax.length) {
-				    	listax[t].style.textDecoration="none";
-				    	t++;
-				    }				    
-				    $('#listaResultados li').get(position).style.textDecoration="underline";
-				    document.getElementById('pac-input').innerHTML = lineasQueLlegan[position * 3];
-					var recoCorrecto = coord(lineasQueLlegan[position * 3 + 2]); //index * 3 +2
-					 if (dibujar != null){
-              			dibujar.setMap(null);			    
-            		}
-				                // Creo el circulo
-				              var lineSymbol = {
-				                path: google.maps.SymbolPath.CIRCLE,
-				                scale: 6,
-				                strokeColor: '#393',
-				                fillColor: '#393',
-				                fillOpacity: 1
-				              };
-				              //creo la linea
-				              dibujar = new google.maps.Polyline({
-				                path: recoCorrecto,
-				                geodesic: true,
-				                strokeColor: '#058907',
-				                strokeOpacity: 1.0,
-				                strokeWeight: 2,
-				                icons: [{
-				                  icon: lineSymbol,
-				                  offset: '100%'
-				                }]
-				              });
-				              dibujar.setMap(map);
-				              animateCircle(dibujar);
-					});
-              document.getElementById("resultado").style.display = 'block';
-            } else {
-            	document.getElementById("resultado").style.display="none";;
-				var lis = document.getElementById("listaResultados");
-				 $("#listaResultados").empty();
-           }
-    } 
-}   
-
-
- function animateCircle(line) { //mueve el circulo por la linea
+        dibujadas.push(dibujar);
+        animateCircle(dibujar);
+      }
+       
+function animateCircle(line) { //mueve el circulo por la linea
     var count = 0;
     offsetId = window.setInterval(function() {
       count = (count + 1) % 200;
@@ -394,153 +135,5 @@ function codeAddress() {
       line.set('icons', icons);
   }, 60);
 }   
-
- function coord(recorrido){
-  var puntos = [];
-  for ( var i = 0; i < ( recorrido.length-1) ; i = i+2) {
-    var punto = new google.maps.LatLng(recorrido[i+1],recorrido[i]);
-    puntos.push(punto);
-  };
-  return puntos;
-}
-
-function perteneceAlRadio(reco, point,radio,pointHasta){
-        var radioD = (0.0010736987954231836*radio)/100;
-        var i = 0;
-        var distanciaa=0 ;
-        var aux=0;
-        var aux2=0;
-        var distAux=0;
-        var mejorHastaMomento=99999999999.99;
-        while (i < reco.length - 3 ) {
-            if(intersect(reco[i], reco[i + 1],reco[i+2], reco[i + 3],point.lng(),point.lat(),radioD)){
-                var puntoMed= puntoMedio(Xaux1, Yaux1, Xaux2, Yaux2);
-                distanciaa= distanciaa + distancia(puntoMed.lng(),puntoMed.lat(), reco[i + 2], reco[i + 3]);
-                aux = i;
-                i=i+2;
-                while(i < reco.length - 3 ){
-                    distanciaa= distanciaa + distancia(reco[i], reco[i + 1], reco[i + 2], reco[i + 3]);
-                    if(intersect(reco[i], reco[i + 1],reco[i+2], reco[i + 3],pointHasta.lng(),pointHasta.lat(),radioD)){
-                        var puntoMedHa= puntoMedio(Xaux1, Yaux1, Xaux2, Yaux2);
-                        distanciaa= distanciaa - distancia(reco[i], reco[i + 1], reco[i + 2], reco[i + 3]);
-                        distanciaa= distanciaa + distancia( reco[i], reco[i + 1],puntoMedHa.lng(),puntoMedHa.lat());
-                            if(distanciaa<=mejorHastaMomento) {
-                                mejorHastaMomento = distanciaa;
-                            }
-                    }
-                    i=i+2;
-                    
-                }
-
-                i=aux;
-            }
-
-            distanciaa=0;
-            i = i + 2;
-        }
-        if(mejorHastaMomento==99999999999.99)
-            return -1;
-        else{
-          return  mejorHastaMomento;
-        }
-    }
-
-      function retornoMinimo( linea,  dist, reco){
-        if(dist< mejor[1]){
-            mejor = [linea,dist];
-            mejorRecorrido = reco;
-        }
-    }
-
-  function intersect(xp, yp, xq,  yq,  xC, yC,  rad){
-        var  X=xC; //centro
-        var Y= yC; //centro
-        var radio= rad;
-        var Xp= xp ;
-        var Yp= yp;
-
-        var Xq= xq;
-        var Yq= yq;
-
-        var m = (Yq-Yp)/(Xq-Xp);
-        //System.out.println("m:"+m);
-        var c= Yq-m*Xq;
-        //System.out.println("c:"+c);
-
-        var a= m*m;
-        //System.out.println("m²:"+a);
-
-        var b= 2*m*(c-Y);
-        //System.out.println("b:"+b);
-        var cPol= (c-Y)*(c-Y);
-        //System.out.println("c:"+cPol);
-        cPol= cPol-(radio*radio)+(X*X);
-        a=a+1;
-        //System.out.println("a:"+a);
-        b= b- 2*X;
-        //System.out.println("b:"+b);
-        //System.out.println("c:"+cPol);
-        var ret=aplicarFormula(a, b, cPol);
-         Yaux1=m*Xaux1+c;
-         Yaux2=m*Xaux2+c;
-        //System.out.println("y1= " +Yaux1);
-        //System.out.println("y2= " +Yaux2);
-        var limInf= Math.min(xp,xq);
-        var limSup= Math.max(xp,xq);
-        return (((limInf<=Xaux1&&Xaux1<=limSup)||(limInf<=Xaux2&&Xaux2<=limSup))&&ret);
-    }
-
-      function aplicarFormula(a,  b,  c) {
-        var x1 = (-b + Math.sqrt((b * b) - 4 * a * c)) / (2 * a);
-        var x2 = (-b - Math.sqrt((b * b) - 4 * a * c)) / (2 * a);
-        Xaux1=x1;
-        Xaux2=x2;
-        //System.out.println("El valor de x1 es: " + x1);
-        //System.out.println("El valor de x2 es: " + x2);
-        return(!isNaN(x1)||!isNaN(x2));
-    }
-
-    /** Calcula la distancia de este punto a otro punto
-   * @return la distancia en metros.
-   */
-   function distancia( pLongitud,  pLatitud,  p2Longitud,  p2Latitud) {
-    var RADIO_TIERRA = 6371000 ; // en metros
-    var dLat = (pLatitud - p2Latitud)* Math.PI / 180;  /* en radianes, para usar en sin y cos */
-    var dLong = (pLongitud - p2Longitud) * Math.PI / 180; 
-    var a = Math.sin(dLat/2) *
-           Math.sin(dLat/2) + 
-           Math.sin(dLong/2) *
-           Math.sin(dLong/2) *
-           Math.cos(pLatitud * Math.PI / 180) *
-           Math.cos(p2Latitud * Math.PI / 180);
-    var c = 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
-    return RADIO_TIERRA * c;
-  }
-
-function puntoMedio(  pLongitud,  pLatitud,  p2Longitud,  p2Latitud){
-        var medioLong=(pLongitud+p2Longitud)/2;
-        var medioLat= (pLatitud+p2Latitud)/2;
-        return new google.maps.LatLng(medioLat,medioLong);
-    }
-
-
-function cambiarRadio(){
-	var i = 0;
-	cuadrasACaminar = parseInt(document.getElementById("distancia").value) * 100;
-	while (i<circulos.length){
-		circulos[i].setRadius(cuadrasACaminar);
-		i++;		
-	}
-	buscarAux();
-}
-
- 
-/*function cambiarImagenFondo(nuevaImagen){
-    //cargar imagen primero
-    document.getElementById("publi").src=nuevaImagen;
-}*/
-
-
-google.maps.event.addDomListener(window, 'load', initialize);
 
 --> 
