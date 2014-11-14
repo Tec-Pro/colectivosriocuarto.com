@@ -101,3 +101,62 @@ iframe {
 }
 
 html, body, iframe { height: 80%; }
+
+@media screen and (max-width: 720px) {
+  	
+	* {
+		float: none;
+		padding: 0;
+		margin: 0;		
+		text-align: center;		
+	} 
+	
+	iframe{
+		position: relative;
+	}
+
+	#tabla,#destino{
+		border: none;
+		border-top: solid;
+		border-top-color: white ;
+		height: 100%;
+		max-height: 100%;
+		width: 100%;
+		max-width:100%;
+	}
+
+	#agrupar{
+		width: 100%;
+		max-width: 100%;
+		padding: 0;
+		margin: 0;
+	}
+
+    #columna{
+    	border-radius: 0%;
+		height: 100%; 
+		width: 100%;
+		max-height: 100%;
+		max-width: 100%;
+		border: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	#lineas,#plineas { 
+		height: 100%; 
+		width: 80%;
+		max-height: 100%;	
+		max-width: 80%; 
+		text-align: center;
+	} 
+
+   #menu{
+   		float: none;
+    	border: none;
+    	border-bottom: solid;
+    	border-bottom-color: white ;
+    	width: 100%;
+    }
+	
+}
