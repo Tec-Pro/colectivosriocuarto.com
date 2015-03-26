@@ -86,7 +86,7 @@ var recorridosYNombres =  ["L&iacute;nea 1 verde",recorrido1Verde,
 
 var mapOptions = {
           center: new google.maps.LatLng(-33.1265506, -64.3414028),
-          zoom: 12,
+          zoom: 13,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
@@ -295,7 +295,7 @@ function codeAddress() {
             }
             if (dibujar != null){
               dibujar.setMap(null);			    
-            }
+            } 
             if(mejorRecorrido!=null) {
               document.getElementById('pac-input').innerHTML = mejor[0]	;
               var recoCorrecto = coord(mejorRecorrido);
@@ -377,6 +377,7 @@ function codeAddress() {
 					});
               document.getElementById("resultado").style.display = 'block';
             } else {
+            	document.getElementById('pac-input').innerHTML = "No hay resultados";
             	document.getElementById("resultado").style.display="none";;
 				var lis = document.getElementById("listaResultados");
 				 $("#listaResultados").empty();

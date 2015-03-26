@@ -1,75 +1,138 @@
 <!Doctype HTML>
 <html lang="es">
 	<head>
-		<title>Colectivos R&iacute;o Cuarto</title>
+		<meta charset='UTF-8'>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0,minimum-scale=1.0">
+	  <title>Colectivos R&iacute;o Cuarto</title>
 		<link rel="shortcut icon" href="imagenes/icon.ico" type="image/x-icon"/> 
-		<meta charset="UTF-8">
 		<meta name="title" content="Horario - Colectivos R&iacute;o Cuarto" /> 
-		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
 		<meta name="description" content="Todos los horarios y recorridos de todas las lineas urbanas e interurbanas de la ciudad de R&iacute;o Cuarto, C&oacute;rdoba, Argentina.">
 		<meta name="keywords" content="transporte, transporte publico, colectivos, lineas, lineas de colectivos, buses, bus, rio cuarto, 	horarios de colectivos rio cuarto, transporte en rio cuarto, larga distancia, horarios de colectivo rio cuarto, satcrc, sat, horarios de colectivo rio cuarto, horarios de colectivos rio cuarto holmberg, horario de colectivo rio cuarto, horario de colectivos rio cuarto, horarios de colectivos rio cuarto linea 13, horarios de colectivos rio cuarto linea 9, colectivos rio cuarto, linea 13 rio cuarto, horario colectivo rio cuarto, satcrc horarios, horarios colectivos rio cuarto, horario colectivos rio cuarto, horarios de colectivos rio cuarto linea 8, horarios de colectivos rio cuarto linea 5, horarios de colectivo de rio cuarto, horario colectivo rio cuarto holmberg, horarios linea 9 rio cuarto, horarios de colectivos de rio cuarto, horario de colectivos de rio cuarto, horarios linea 13 rio cuarto, horarios de colectivos en rio cuarto, horarios del colectivo rio cuarto, horarios linea 2 rio cuarto, horarios linea 8 rio cuarto, sat ciudad de rio cuarto, linea 9 rio cuarto, sat rio cuarto, sat rio cuarto horarios de colectivos, colectivos a rio cuarto"/>
-		<link rel="stylesheet" href="css/horario.css">	
+		<script type="text/javascript" src='js/jquery.js'></script>
 	 	<script type="text/javascript" src="js/horario.js"></script>
+	 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">	
+	<script type="text/javascript" src='js/bootstrap.min.js'></script>
+	<script type="text/javascript" src='js/funcionalidades.js'></script>
+	<script type="text/javascript">
+
+	$(document).ready(function(){
+		$('#destino').height($(window).height() - $('#navbar').height()*3);
+		$('#tabla').height($(window).height() - $('#navbar').height()*3);
+		$('body').height($(window).height());
+		$('#destino').width($(window).width() - $('#columna').width()*2);
+		$('#tabla').width($(window).width() - $('#columna').width()*2);
+	});
+
+
+	</script>
+	<style type="text/css">
+
+	.marginTop{
+		margin-top: 1%;
+		float: bottom;
+	}
+
+	.redColor{
+		color: red;
+	}
+
+	.greenColor{
+		color: green;
+	}
+
+	.blackColor{
+		color: black;
+	}
+
+	body{
+	background: #CCCCCC;
+	background: -webkit-linear-gradient(30deg,#8fca90,#058907); 
+	background: -moz-linear-gradient(30deg,#8fca90,#058907); 
+	background-repeat: no-repeat;
+	}
+
+
+	</style>
 	</head>
-	<body>
+	<body class='container-fluid'>
 		<div id="agrupar">
-		<nav id="menu">
-			<ul>
-				<li><figure><img src="imagenes/logo.png"></figure></li>
-				<li><a href="index.html">Inicio</a></li>
-				<li>Horarios</li>
-				<li><a href="recorrido.html">Recorridos</a></li>
-				<li><a href="acercaDe.html">Acerca de</a></li>
-				<li><a href="contacto.html">Contacto</a></li>
-				<li><a href="http://centorbihnos.com/" id="linkPublicidad" target="_blank"><img src="http://www.colectivosriocuarto.com/imagenes/publicidad1.png" id="publi"></a></li>
-			</ul>
-		</nav>
-		<section id="columna">
-			<p id="plineas">L&iacute;nea: 
-        		   		<select name="lineas" id="lineas" onchange="cambiar()">
+		<div id="navbar">
+		<header id="navbar">
+			<nav class="navbar navbar-default navbar-inverse">
+				<div class="container-fluid">
+					<div class='navbar-header'>
+						<a class="navbar-brand" href="#">
+					        <img  alt="Colectivos R&iacute;o Cuarto" src="imagenes/logo.png">
+					    </a>
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-1">
+							<span class='sr-only'></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>						 
+					</div>
+					<div class="collapse navbar-collapse" id="navbar-1">
+						<ul class="nav navbar-nav pull-right">
+				             <li><a href="index.html">Inicio</a></li>
+				             <li><a href="recorrido.html">Recorridos</a></li>
+				             <li><a href="acercaDe.html">Acerca de</a></li>
+				             <li><a href="contacto.html">Contacto</a></li>
+				             <li><a target="_blank" href="https://www.facebook.com/profile.php?id=673196096031342"><img class='img-responsive' src="imagenes/facebook.png"></a></li>
+				        </ul>
+					</div>
+				</div>
+			</nav>
+		</header>	
+	</div><br>
+		<form id="columna" class='row col-xs-12 col-md-3 form-inline'>
+			<div class="form-group">
+			<label id="plineas">L&iacute;nea: </label>
+        		<select class="form-control" name="lineas" id="lineas" onchange="cambiar()">
         		   		<option selected="selected"></option>
-						<option value="1v.html">L&iacute;nea 1 Verde</option>
-						<option value="1r.html">L&iacute;nea 1 Rojo</option>
-						<option value="2v.html">L&iacute;nea 2 Verde</option>
-						<option value="2r.html">L&iacute;nea 2 Rojo</option>
-						<option value="3.html">L&iacute;nea 3</option>
-						<option value="4.html">L&iacute;nea 4</option>
-						<option value="5.html">L&iacute;nea 5</option>
-						<option value="6.html">L&iacute;nea 6</option>
-						<option value="7.html">L&iacute;nea 7</option>
-						<option value="8r.html">L&iacute;nea 8 Rojo</option>
-						<option value="8v.html">L&iacute;nea 8 Verde</option>
-						<option value="9r.html">L&iacute;nea 9 Rojo</option>
-						<option value="9v.html">L&iacute;nea 9 Verde</option>
-						<option value="10.html">L&iacute;nea 10</option>
-						<option value="11.html">L&iacute;nea 11</option>
-						<option value="12.html">L&iacute;nea 12</option>
-						<option value="13.html">L&iacute;nea 13</option>
-						<option value="14.html">L&iacute;nea 14</option>
-						<option value="15.html">L&iacute;nea 15</option>
-						<option value="16.html">L&iacute;nea 16</option>
-						<option value="17.html">L&iacute;nea 17</option>
-						<option value="18.html">L&iacute;nea 18</option>
-						<option value="unrchigueras.html">UNRC - Las Higueras</option>
-						<option value="r4higueras.html">R&iacute;o Cuarto - Las Higueras</option>
-						<option value="r4holmberg.html">R&iacute;o Cuarto - Holmberg</option>
-						<option value="r4mar.html">R&iacute;o Cuarto - Villa Mar&iacute;a</option>
-						<option value="r4mol.html">R&iacute;o Cuarto - C.Moldes</option>
-			</select ></p> <br>
-			<br>
-    		<p>
-        		<a href="https://www.facebook.com/TecProSoftware"><img src="imagenes/facebook.png"></a> &nbsp; &nbsp;       
-				<a href="https://play.google.com/store/apps/details?id=org.tecpro.colectivos&hl=es_419"><img src="imagenes/googlePlay.png"></a>
-			</p>
-			<br>
-			<p><a href="https://www.facebook.com/pages/Alquiler-de-Trajes-HOMBRES/116858305083482"><img src="http://www.colectivosriocuarto.com/imagenes/traje.png"></a></p>
-			<br>
-			<center> <p><a href="https://www.facebook.com/CyLjoyas"><img src="imagenes/lcjoyas.png" id="publi3" border="0"></a></p></center> 
-			<br>	
+						<option class='greenColor' value="1v.html">L&iacute;nea 1 Verde</option>
+						<option class='redColor' value="1r.html">L&iacute;nea 1 Rojo</option>
+						<option class='greenColor' value="2v.html">L&iacute;nea 2 Verde</option>
+						<option class='redColor' value="2r.html">L&iacute;nea 2 Rojo</option>
+						<option class='blackColor' value="3.html">L&iacute;nea 3</option>
+						<option class='blackColor' value="4.html">L&iacute;nea 4</option>
+						<option class='blackColor' value="5.html">L&iacute;nea 5</option>
+						<option class='blackColor' value="6.html">L&iacute;nea 6</option>
+						<option class='blackColor' value="7.html">L&iacute;nea 7</option>
+						<option class='redColor' value="8r.html">L&iacute;nea 8 Rojo</option>
+						<option class='greenColor' value="8v.html">L&iacute;nea 8 Verde</option>
+						<option class='redColor' value="9r.html">L&iacute;nea 9 Rojo</option>
+						<option class='greenColor' value="9v.html">L&iacute;nea 9 Verde</option>
+						<option class='blackColor' value="10.html">L&iacute;nea 10</option>
+						<option class='blackColor' value="11.html">L&iacute;nea 11</option>
+						<option class='blackColor' value="12.html">L&iacute;nea 12</option>
+						<option class='blackColor' value="13.html">L&iacute;nea 13</option>
+						<option class='blackColor' value="14.html">L&iacute;nea 14</option>
+						<option class='blackColor' value="15.html">L&iacute;nea 15</option>
+						<option class='blackColor' value="16.html">L&iacute;nea 16</option>
+						<option class='blackColor' value="17.html">L&iacute;nea 17</option>
+						<option class='blackColor' value="18.html">L&iacute;nea 18</option>
+						<option class='blackColor' value="unrchigueras.html">UNRC - Las Higueras</option>
+						<option class='blackColor' value="r4higueras.html">R&iacute;o Cuarto - Las Higueras</option>
+						<option class='blackColor' value="r4holmberg.html">R&iacute;o Cuarto - Holmberg</option>
+						<option class='blackColor' value="r4mar.html">R&iacute;o Cuarto - Villa Mar&iacute;a</option>
+						<option class='blackColor' value="r4mol.html">R&iacute;o Cuarto - C.Moldes</option>
+				</select> <br><br>
+			</div>
+			<div class="form-group col-xs-12">	
+				<a class='col-xs-12' target="_blank" href="https://play.google.com/store/apps/details?id=org.tecpro.colectivos&hl=es_419"><img class='img-responsive center-block' src="imagenes/googlePlay.png"></a>
+			</div>
+		</form>
 		</section>
-		<section id="tabla" height="80%">
-				<iframe src="about:blank" id="destino" name="destino" align="middle" frameborder="0" style="border:0" width="70%" height="80%" scrolling="auto"></iframe>
+		<div class='clear-fix'></div>
+		<section id="tabla" class='container-fluid col-xs-12 col-md-9'>
+				<iframe class='col-xs-12' src="about:blank" id="destino" name="destino" frameborder="0" style="border:0"></iframe>
 		</section>		
-		</div>	
+		</div>
+		<footer class="footer container marginTop" id="auspiciantes">
+			<a class='col-xs-4 marginTop' href="http://centorbihnos.com/" target="_blank"><img class='img-responsive center-block'src="http://www.colectivosriocuarto.com/imagenes/publicidad1.png"></a>
+			<a class='col-xs-4' href="https://www.facebook.com/pages/Alquiler-de-Trajes-HOMBRES/116858305083482" target="_blank"><img class='img-responsive center-block' src="http://www.colectivosriocuarto.com/imagenes/traje.png"></a>			
+			<a class='col-xs-4 marginTop' href="https://www.facebook.com/CyLjoyas" target="_blank"><img class='img-responsive center-block' src="imagenes/lcjoyas.png" id="publi3"</a>
+		</footer>	
 	</body>
 </html>
