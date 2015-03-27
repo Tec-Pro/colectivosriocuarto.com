@@ -12,9 +12,9 @@
 		<script type="text/javascript" src='js/jquery.js'></script>
 		<script type="text/javascript"
 		src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCWcDSkf5DDRXiMp-jD-BcFdFEDRHycSeY&sensor=false&libraries=geometry&region=AR&language=es"></script>
-    	<script type="text/javascript" src="js/home.js"> </script>
+    <script type="text/javascript" src="js/home.js"> </script>
     	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">	
-		<script type="text/javascript" src='js/bootstrap.min.js'></script>
+	<script type="text/javascript" src='js/bootstrap.min.js'></script>
     <script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -84,7 +84,7 @@
 				             <li><a href="horario.html">Horarios</a></li>
 				             <li><a href="recorrido.html">Recorridos</a></li>
 				             <li><a href="acercaDe.html">Acerca de</a></li>
-				             <li><a href="contacto.php">Contacto</a></li>
+				             <li><a href="contacto.html">Contacto</a></li>
 				             <li><a target="_blank" href="https://www.facebook.com/profile.php?id=673196096031342"><img class='img-responsive' src="imagenes/facebook.png"></a></li>
 				        </ul>
 					</div>

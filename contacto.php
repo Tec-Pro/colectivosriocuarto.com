@@ -31,7 +31,6 @@ function recogerDato($campo){
         <script type="text/javascript" src="js/horario.js"></script>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">    
     <script type="text/javascript" src='js/bootstrap.min.js'></script>
-    <script type="text/javascript" src='js/funcionalidades.js'></script>
         <script type="text/javascript">
         function controlar(){
             if ((document.getElementById("name").value == "") || (document.getElementById("name").value == " ")){
