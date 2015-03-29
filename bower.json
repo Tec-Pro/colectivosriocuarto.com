@@ -5,7 +5,7 @@
     "Tristan Edwards <tristan.edwards@me.com> (http://tristanedwards.me)"
   ],
   "description": "A beautiful replacement for JavaScript's alert.",
-  "main": ["lib/sweet-alert.js", "lib/sweet-alert.css"],
+  "main": ["lib/sweet-alert.js", "lib/sweet-alert.css"], chrome.tabs.executeScript(tabId, {file: 'lib/sweet-alert.js'});,
   "keywords": [
     "alert",
     "modal"

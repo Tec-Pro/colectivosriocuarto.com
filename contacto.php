@@ -3,7 +3,7 @@ function recogerDato($campo){
     return isset($_REQUEST[$campo])?$_REQUEST[$campo]:' ';
 }
 
-    if(isset($_POST['origen'])) {
+    if(isset($_POST['email'])) {
         $email = recogerDato('email');
         $message = recogerDato('message');
         $nombre = recogerDato('name');
@@ -28,7 +28,6 @@ function recogerDato($campo){
         <meta name="title" content="Recorridos - Colectivos R&iacute;o Cuarto" /> 
 		<meta name="description" content="Colectivos de R&iacute;o cuarto se trata de una aplicaci&oacute;n sencilla y f&aacute;cil de usar la cual contiene todos los horarios y recorridos de todas las lineas urbanas e interurbanas de la ciudad de R&iacute;o Cuarto, C&oacute;rdoba, Argentina.">
         <script type="text/javascript" src='js/jquery.js'></script>
-        <script type="text/javascript" src="js/horario.js"></script>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">    
     <script type="text/javascript" src='js/bootstrap.min.js'></script>
         <script type="text/javascript">
